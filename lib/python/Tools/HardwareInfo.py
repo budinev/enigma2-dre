@@ -5,6 +5,7 @@ hw_info = None
 
 class HardwareInfo:
 	device_name = _("unavailable")
+	device_brandname = None
 	device_model = None
 	device_version = ""
 	device_revision = ""
@@ -32,6 +33,12 @@ class HardwareInfo:
 			with open("/proc/stb/info/model") as fp:
 				self.device_name = fp.read().strip()
 
+		# Brandname ... bit odd, but history prevails
+		try:
+			self.device_brandname = open("/proc/stb/info/brandname").read().strip()
+		except:
+			pass
+
 		# Model
 		fp = open((resolveFilename(SCOPE_SKIN, 'hw_info/hw_info.cfg')), 'r')
 		for line in fp:
@@ -52,6 +59,7 @@ class HardwareInfo:
 
 		# standard values
 		self.device_model = self.device_model or self.device_name
+		self.device_hw = self.device_model
 		self.machine_name = self.device_model
 
 		# custom overrides for specific receivers
@@ -59,21 +67,16 @@ class HardwareInfo:
 			self.machine_name = "%sx00" % self.device_model[:3]
 		elif self.device_model == "et11000":
 			self.machine_name = "et1x000"
-		elif self.device_model.startswith("H9 "):
-			self.device_name = self.device_model
-			self.device_model = self.device_name.replace(" ", "").lower()
-			self.machine_name = "h9combo"
-		elif self.device_model.startswith("H9"):
-			self.device_name = self.device_model
-			self.device_model = self.device_name.lower()
-			self.machine_name = "h9"
+		elif self.device_brandname == "Zgemma":
+			self.device_model = self.device_name
+			self.machine_name = self.device_name
 
 		if self.device_revision:
-			self.device_string = "%s (%s-%s)" % (self.device_model, self.device_revision, self.device_version)
+			self.device_string = "%s (%s-%s)" % (self.device_hw, self.device_revision, self.device_version)
 		elif self.device_version:
-			self.device_string = "%s (%s)" % (self.device_model, self.device_version)
+			self.device_string = "%s (%s)" % (self.device_hw, self.device_version)
 		else:
-			self.device_string = self.device_model
+			self.device_string = self.device_hw
 
 		# only some early DMM boxes do not have HDMI hardware
 		self.device_hdmi =  self.device_model not in ("dm800", "dm8000")
