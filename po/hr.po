@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-21 15:48+0100\n"
-"PO-Revision-Date: 2020-10-11 19:24+0200\n"
+"PO-Revision-Date: 2020-11-23 20:57+0100\n"
 "Last-Translator: Željko <zeljko2@hi.ht.hr>\n"
 "Language-Team: Željko\n"
 "Language: hr_HR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 msgid ""
 "\n"
@@ -4359,9 +4359,8 @@ msgstr "Zanemarite prostor za imena DVB-T podmreže"
 msgid "Ignore conflict"
 msgstr "Zanemari sukob"
 
-#, fuzzy
 msgid "Image View On"
-msgstr "Image: "
+msgstr "Uključen pregled slike"
 
 #, python-format
 msgid ""
@@ -8865,7 +8864,7 @@ msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Testirajte zaslone koji su korisni za fino podešavanje zaslona"
 
 msgid "Text View On"
-msgstr ""
+msgstr "Uključen prikaz teksta"
 
 msgid "Text color"
 msgstr "Boja teksta"
@@ -10121,12 +10120,11 @@ msgstr "Buđenje"
 msgid "Wakeup TV from standby"
 msgstr "Buđenje TV-a iz stanja čekanja"
 
-#, fuzzy
 msgid "Wakeup command for TV"
-msgstr "Signal buđenja iz televizora"
+msgstr "Naredba za buđenje TV-a"
 
 msgid "Wakeup receiver for start timer"
-msgstr "Omogućite prijemniku pokretanje tajmera"
+msgstr "Naredba resiveru za pokretanje tajmera"
 
 msgid "Wakeup receiver from standby"
 msgstr "Buđenje resivera iz stanja čekanja"
