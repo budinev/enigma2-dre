@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 10:54+0100\n"
+"POT-Creation-Date: 2020-11-27 17:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -3702,12 +3702,12 @@ msgstr "Povolit Virgin EPG"
 msgid "Enable auto cable scan"
 msgstr "Povolit automatické prohledání kabelu"
 
-msgid "Enable auto fast scan"
-msgstr "Povolit automatický Fast scan"
+msgid "Enable auto fastscan"
+msgstr "Povolit automatický fastscan"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
-msgstr "Povolit automatický Fast scan pro %s"
+msgid "Enable auto fastscan for %s"
+msgstr "Povolit automatický fastscan pro %s"
 
 #
 msgid "Enable bouquet edit"
@@ -4298,16 +4298,20 @@ msgid "Fast DiSEqC"
 msgstr "Rychlý DiSEqC"
 
 #
-msgid "Fast Scan"
-msgstr "Fast Scan"
-
-#
 msgid "Fast epoch"
 msgstr "Rychle v intervalu"
 
 #
 msgid "Fast forward speeds"
 msgstr "Rychlosti přetáčení vpřed"
+
+#
+msgid "FastScan"
+msgstr "Fastscan"
+
+#
+msgid "Fastscan"
+msgstr "Fastscan"
 
 #
 msgid "Favourites"
@@ -10178,7 +10182,7 @@ msgstr ""
 "Pro případné korekce můžete kontaktovat autora\n"
 "na výše uvedené adrese.\n"
 "\n"
-"®25.11.2020"
+"®27.11.2020"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
