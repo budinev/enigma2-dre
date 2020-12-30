@@ -70,7 +70,7 @@ void eServerSocket::notifier(int)
 	newConnection(clientfd);
 }
 
-eServerSocket::eServerSocket(int port, eMainloop *ml): m_port(port), eSocket(ml)
+eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml)
 {
 	int res;
 	struct addrinfo *addr = NULL;
@@ -112,13 +112,10 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml): eSocket(ml)
 
 	okflag = 0;
 	strRemoteHost = "";
-	m_port = 0;
 
 	memset(&serv_addr_un, 0, sizeof(serv_addr_un));
 	serv_addr_un.sun_family = AF_LOCAL;
 	strcpy(serv_addr_un.sun_path, path.c_str());
-
-	m_port = 0;
 
 	memset(&addr, 0, sizeof(addr));
 	addr.ai_family = AF_LOCAL;
@@ -170,7 +167,7 @@ int eServerSocket::startListening(struct addrinfo *addr)
 		return -1;
 	}
 
-	if (listen(getDescriptor(), 1) < 0)
+	if (listen(getDescriptor(), 0) < 0)
 	{
 		close();
 		return -1;
