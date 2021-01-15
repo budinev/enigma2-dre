@@ -117,7 +117,7 @@ def InitUsageConfig():
 	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default="popup", choices=[("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("movielist", _("Return to movie list"))])
-	config.usage.setup_level = ConfigSelection(default="simple", choices=[("simple", _("Normal")), ("intermediate", _("Advanced")), ("expert", _("Expert"))])
+	config.usage.setup_level = ConfigSelection(default="expert", choices=[("simple", _("Normal")), ("intermediate", _("Advanced")), ("expert", _("Expert"))])
 	config.usage.startup_to_standby = ConfigSelection(default="no", choices=[("no", _("no")), ("yes", _("yes")), ("except", _("No, except Wakeup timer"))])
 
 	config.usage.wakeup_enabled = ConfigSelection(default="no", choices=[("no", _("no")), ("yes", _("yes")), ("standby", _("Yes, only from standby")), ("deepstandby", _("Yes, only from deep standby"))])
@@ -256,7 +256,7 @@ def InitUsageConfig():
 	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims))
 	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims))
 
-	config.misc.disable_background_scan = ConfigYesNo(default=False)
+	config.misc.disable_background_scan = ConfigYesNo(default=True)
 	config.misc.use_ci_assignment = ConfigYesNo(default=False)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default='barright', choices=[('barleft', _("Progress bar left")), ('barright', _("Progress bar right")), ('percleft', _("Percentage left")), ('percright', _("Percentage right")), ('no', _("no"))])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default=True)
