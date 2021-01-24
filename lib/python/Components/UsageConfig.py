@@ -3,6 +3,7 @@ from Components.Console import Console
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigPassword
 from Tools.Directories import defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBLocalTimeHandler, eEPGCache
+from Components.About import GetIPsFromNetworkInterfaces
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
@@ -133,7 +134,7 @@ def InitUsageConfig():
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default = "popup", choices = [
 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("movielist", _("Return to movie list")) ])
 
-	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
+	config.usage.setup_level = ConfigSelection(default = "simple", choices = [
 		("simple", _("Normal")),
 		("intermediate", _("Advanced")),
 		("expert", _("Expert")) ])
@@ -291,7 +292,7 @@ def InitUsageConfig():
 	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims))
 	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims))
 
-	config.misc.disable_background_scan = ConfigYesNo(default = True)
+	config.misc.disable_background_scan = ConfigYesNo(default = False)
 	config.misc.use_ci_assignment = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
 		('barleft', _("Progress bar left")),
@@ -345,85 +346,72 @@ def InitUsageConfig():
 	if SystemInfo["Fan"]:
 		choicelist = [('off', _("Off")), ('on', _("On")), ('auto', _("Auto"))]
 		if os.path.exists("/proc/stb/fp/fan_choices"):
-			with open("/proc/stb/fp/fan_choices", "r") as fp:
-				choicelist = [x for x in choicelist if x[0] in fp.read().strip().split(" ")]
+			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
 		config.usage.fan = ConfigSelection(choicelist)
 		def fanChanged(configElement):
-			with open(SystemInfo["Fan"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["Fan"], "w").write(configElement.value)
 		config.usage.fan.addNotifier(fanChanged)
 
 	if SystemInfo["FanPWM"]:
 		def fanSpeedChanged(configElement):
-			with open(SystemInfo["FanPWM"], "w") as fp:
-				fp.write(hex(configElement.value)[2:])
+			open(SystemInfo["FanPWM"], "w").write(hex(configElement.value)[2:])
 		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
 		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	if SystemInfo["PowerLED"]:
 		def powerLEDChanged(configElement):
-			with open(SystemInfo["PowerLED"], "w") as fp:
-				fp.write(configElement.value and "on" or "off")
+			open(SystemInfo["PowerLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.powerLED = ConfigYesNo(default = True)
 		config.usage.powerLED.addNotifier(powerLEDChanged)
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			with open(SystemInfo["StandbyLED"], "w") as fp:
-				fp.write(configElement.value and "on" or "off")
+			open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["SuspendLED"]:
 		def suspendLEDChanged(configElement):
-			with open(SystemInfo["SuspendLED"], "w") as fp:
-				fp.write(configElement.value and "on" or "off")
+			open(SystemInfo["SuspendLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.suspendLED = ConfigYesNo(default = True)
 		config.usage.suspendLED.addNotifier(suspendLEDChanged)
 
 	if SystemInfo["PowerOffDisplay"]:
 		def powerOffDisplayChanged(configElement):
-			with open(SystemInfo["PowerOffDisplay"], "w") as fp:
-				fp.write(configElement.value and "1" or "0")
+			open(SystemInfo["PowerOffDisplay"], "w").write(configElement.value and "1" or "0")
 		config.usage.powerOffDisplay = ConfigYesNo(default = True)
 		config.usage.powerOffDisplay.addNotifier(powerOffDisplayChanged)
 
 	if SystemInfo["LCDshow_symbols"]:
 		def lcdShowSymbols(configElement):
-			with open(SystemInfo["LCDshow_symbols"], "w") as fp:
-				fp.write(configElement.value and "1" or "0")
+			open(SystemInfo["LCDshow_symbols"], "w").write(configElement.value and "1" or "0")
 		config.usage.lcd_show_symbols = ConfigYesNo(default = True)
 		config.usage.lcd_show_symbols.addNotifier(lcdShowSymbols)
 
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
 			if "fp" in SystemInfo["WakeOnLAN"]:
-				with open(SystemInfo["WakeOnLAN"], "w") as fd:
-					fd.write(configElement.value and "enable" or "disable")
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
 			else:
-				with open(SystemInfo["WakeOnLAN"], "w") as fd:
-					fd.write(configElement.value and "on" or "off")
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 		config.usage.wakeOnLAN = ConfigYesNo(default = False)
 		config.usage.wakeOnLAN.addNotifier(wakeOnLANChanged)
 
 	if SystemInfo["hasXcoreVFD"]:
 		def set12to8characterVFD(configElement):
-			with open(SystemInfo["hasXcoreVFD"], "w") as fp:
-				fp.write(not configElement.value and "1" or "0")
+			open(SystemInfo["hasXcoreVFD"], "w").write(not configElement.value and "1" or "0")
 		config.usage.toggle12to8characterVFD = ConfigYesNo(default = False)
 		config.usage.toggle12to8characterVFD.addNotifier(set12to8characterVFD)
 
 	if SystemInfo["LcdLiveTVMode"]:
 		def setLcdLiveTVMode(configElement):
-			with open(SystemInfo["LcdLiveTVMode"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["LcdLiveTVMode"], "w").write(configElement.value)
 		config.usage.LcdLiveTVMode = ConfigSelection(default = "0", choices=[str(x) for x in range(0,9)])
 		config.usage.LcdLiveTVMode.addNotifier(setLcdLiveTVMode)
 
 	if SystemInfo["LcdLiveDecoder"]:
 		def setLcdLiveDecoder(configElement):
-			with open(SystemInfo["LcdLiveDecoder"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["LcdLiveDecoder"], "w").write(configElement.value)
 		config.usage.LcdLiveDecoder = ConfigSelection(default = "0", choices=[str(x) for x in range(0,4)])
 		config.usage.LcdLiveDecoder.addNotifier(setLcdLiveDecoder)
 
@@ -535,16 +523,14 @@ def InitUsageConfig():
 
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
-			with open(SystemInfo["ZapMode"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["ZapMode"], "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 
 	if SystemInfo["VFD_scroll_repeats"]:
 		def scroll_repeats(el):
-			with open(SystemInfo["VFD_scroll_repeats"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
 		choicelist = []
 		for i in range(1, 11, 1):
 			choicelist.append((str(i)))
@@ -553,8 +539,7 @@ def InitUsageConfig():
 
 	if SystemInfo["VFD_scroll_delay"]:
 		def scroll_delay(el):
-			with open(SystemInfo["VFD_scroll_delay"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_scroll_delay"], "w").write(el.value)
 		choicelist = []
 		for i in range(0, 1001, 50):
 			choicelist.append((str(i)))
@@ -563,8 +548,7 @@ def InitUsageConfig():
 
 	if SystemInfo["VFD_initial_scroll_delay"]:
 		def initial_scroll_delay(el):
-			with open(SystemInfo["VFD_initial_scroll_delay"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
 		choicelist = []
 		for i in range(0, 20001, 500):
 			choicelist.append((str(i)))
@@ -573,8 +557,7 @@ def InitUsageConfig():
 
 	if SystemInfo["VFD_final_scroll_delay"]:
 		def final_scroll_delay(el):
-			with open(SystemInfo["VFD_final_scroll_delay"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
 		choicelist = []
 		for i in range(0, 20001, 500):
 			choicelist.append((str(i)))
@@ -583,15 +566,13 @@ def InitUsageConfig():
 
 	if SystemInfo["HasBypassEdidChecking"]:
 		def setHasBypassEdidChecking(configElement):
-			with open(SystemInfo["HasBypassEdidChecking"], "w") as fp:
-				fp.write("00000001" if configElement.value else "00000000")
+			open(SystemInfo["HasBypassEdidChecking"], "w").write("00000001" if configElement.value else "00000000")
 		config.av.bypassEdidChecking = ConfigYesNo(default=False)
 		config.av.bypassEdidChecking.addNotifier(setHasBypassEdidChecking)
 
 	if SystemInfo["HasColorspace"]:
 		def setHaveColorspace(configElement):
-			with open(SystemInfo["HasColorspace"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["HasColorspace"], "w").write(configElement.value)
 		if SystemInfo["HasColorspaceSimple"]:
 			config.av.hdmicolorspace = ConfigSelection(default = "Edid(Auto)", choices={"Edid(Auto)": _("Auto"), "Hdmi_Rgb": _("RGB"), "444": _("YCbCr444"), "422": _("YCbCr422"), "420": _("YCbCr420")})
 		else:
@@ -600,56 +581,48 @@ def InitUsageConfig():
 
 	if SystemInfo["HasColordepth"]:
 		def setHaveColordepth(configElement):
-			with open(SystemInfo["HasColordepth"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["HasColordepth"], "w").write(configElement.value)
 		config.av.hdmicolordepth = ConfigSelection(default = "auto", choices={"auto": _("Auto"), "8bit": _("8bit"), "10bit": _("10bit"), "12bit": _("12bit")})
 		config.av.hdmicolordepth.addNotifier(setHaveColordepth)
 
 	if SystemInfo["HasHDMIpreemphasis"]:
 		def setHDMIpreemphasis(configElement):
-			with open(SystemInfo["HasHDMIpreemphasis"], "w") as fp:
-				fp.write("on" if configElement.value else "off")
+			open(SystemInfo["HasHDMIpreemphasis"], "w").write("on" if configElement.value else "off")
 		config.av.hdmipreemphasis = ConfigYesNo(default=False)
 		config.av.hdmipreemphasis.addNotifier(setHDMIpreemphasis)
 
 	if SystemInfo["HasColorimetry"]:
 		def setColorimetry(configElement):
-			with open(SystemInfo["HasColorimetry"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["HasColorimetry"], "w").write(configElement.value)
 		config.av.hdmicolorimetry = ConfigSelection(default = "auto", choices = [("auto", _("Auto")), ("bt2020ncl", _("BT 2020 NCL")), ("bt2020cl", _("BT 2020 CL")), ("bt709", _("BT 709"))])
 		config.av.hdmicolorimetry.addNotifier(setColorimetry)
 
 	if SystemInfo["HasHdrType"]:
 		def setHdmiHdrType(configElement):
-			with open(SystemInfo["HasHdrType"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["HasHdrType"], "w").write(configElement.value)
 		config.av.hdmihdrtype = ConfigSelection(default = "auto", choices={"auto": _("Auto"), "none": _("SDR"), "hdr10": _("HDR10"), "hlg": _("HLG"), "dolby": _("Dolby")})
 		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
 
 	if SystemInfo["HDRSupport"]:
 		def setHlgSupport(configElement):
-			with open("/proc/stb/hdmi/hlg_support", "w") as fp:
-				fp.write(configElement.value)
+			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
 		config.av.hlg_support = ConfigSelection(default = "auto(EDID)",
 			choices = [ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
 		def setHdr10Support(configElement):
-			with open("/proc/stb/hdmi/hdr10_support", "w") as fp:
-				fp.write(configElement.value)
+			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
 		config.av.hdr10_support = ConfigSelection(default = "auto(EDID)",
 			choices = [ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 
 		def setDisable12Bit(configElement):
-			with open("/proc/stb/video/disable_12bit", "w") as fp:
-				fp.write("on" if configElement.value else "off")
+			open("/proc/stb/video/disable_12bit", "w").write("on" if configElement.value else "off")
 		config.av.allow_12bit = ConfigYesNo(default=False)
 		config.av.allow_12bit.addNotifier(setDisable12Bit)
 
 		def setDisable10Bit(configElement):
-			with open("/proc/stb/video/disable_10bit", "w") as fp:
-				fp.write("on" if configElement.value else "off")
+			open("/proc/stb/video/disable_10bit", "w").write("on" if configElement.value else "off")
 		config.av.allow_10bit = ConfigYesNo(default=False)
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
@@ -825,8 +798,9 @@ def InitUsageConfig():
 	config.misc.softcam_setup = ConfigSubsection()
 	config.misc.softcam_setup.extension_menu = ConfigYesNo(default = True)
 
+	config.ntp = ConfigSubsection()
 	def timesyncChanged(configElement):
-		if configElement.value == "dvb" or time.localtime(time.time()).tm_year < 2004:
+		if configElement.value == "dvb" or not GetIPsFromNetworkInterfaces():
 			eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 			eEPGCache.getInstance().timeUpdated()
 			if configElement.value == "dvb" and os.path.islink('/etc/network/if-up.d/ntpdate-sync'):
@@ -836,8 +810,9 @@ def InitUsageConfig():
 			eEPGCache.getInstance().timeUpdated()
 			if not os.path.islink('/etc/network/if-up.d/ntpdate-sync'):
 				Console().ePopen("echo '30 * * * *    /usr/bin/ntpdate-sync silent' >>/etc/cron/crontabs/root;ln -s /usr/bin/ntpdate-sync /etc/network/if-up.d/ntpdate-sync")
-	config.misc.timesync = ConfigSelection(default = "auto", choices = [("auto", _("auto")), ("dvb", _("Transponder Time")), ("ntp", _("Internet (ntp)"))])
-	config.misc.timesync.addNotifier(timesyncChanged)
+	config.ntp.timesync = ConfigSelection(default = "auto", choices = [("auto", _("auto")), ("dvb", _("Transponder Time")), ("ntp", _("Internet (ntp)"))])
+	config.ntp.timesync.addNotifier(timesyncChanged)
+	config.ntp.server = ConfigText("pool.ntp.org",  fixed_size=False)
 
 def updateChoices(sel, choices):
 	if choices:
