@@ -14,4 +14,5 @@ install_PYTHON = \
 	ServiceReference.py \
 	skin.py \
 	Startup.py \
-	timer.py
+	timer.py \
+	BoxBrandingTest.py
