@@ -1,10 +1,4 @@
-import DVDProject
-import TitleList
-import TitleCutter
-import TitleProperties
-import ProjectSettings
-import DVDToolbox
-import Process
+import DVDProject, TitleList, TitleCutter, TitleProperties, ProjectSettings, DVDToolbox, Process
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

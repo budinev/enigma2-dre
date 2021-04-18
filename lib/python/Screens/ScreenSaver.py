@@ -5,8 +5,7 @@ from Components.Pixmap import Pixmap
 from Components.config import config
 import Screens.Standby
 from enigma import ePoint, eTimer, iPlayableService, eActionMap
-import os
-import random
+import os, random
 from sys import maxint
 
 class InfoBarScreenSaver:

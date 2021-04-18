@@ -15,13 +15,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.Downloader import downloadWithProgress
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
-import os
-import urllib2
-import json
-import time
-import zipfile
-import shutil
-import tempfile
+import os, urllib2, json, time, zipfile, shutil, tempfile
 
 from enigma import eEPGCache
 

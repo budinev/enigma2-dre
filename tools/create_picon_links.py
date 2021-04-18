@@ -5,8 +5,7 @@
 # It will read the servicenames from the lamedb and create symlinks
 # for the servicereference names.
 
-import os
-import sys
+import os, sys
 
 f = open(sys.argv[1]).readlines()
 

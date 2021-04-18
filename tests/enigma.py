@@ -317,8 +317,7 @@ class eActionMap:
 
 def init_nav():
 	print "init nav"
-	import Navigation
-	import NavigationInstance
+	import Navigation, NavigationInstance
 	NavigationInstance.instance = Navigation.Navigation()
 
 def init_record_config():

@@ -1,7 +1,6 @@
 # takes a header file, outputs action ids
 
-import tokenize
-import sys
+import tokenize, sys
 
 def filter(g):
 	while 1:

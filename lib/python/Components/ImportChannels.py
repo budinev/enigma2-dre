@@ -1,8 +1,4 @@
-import threading
-import urllib2
-import os
-import shutil
-import tempfile
+import threading, urllib2, os, shutil, tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox

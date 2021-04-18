@@ -1,8 +1,6 @@
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
-import os
-import glob
-import tempfile
+import os, glob, tempfile
 
 class tmp:
 	dir = None

@@ -45,8 +45,7 @@ from time import time, localtime, strftime
 import os
 from bisect import insort
 from sys import maxint
-import itertools
-import datetime
+import itertools, datetime
 
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
