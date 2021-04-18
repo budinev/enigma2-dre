@@ -4,7 +4,6 @@ from time import time as getTime
 
 from Source import Source
 
-
 class Clock(Source):
 	def __init__(self):
 		Source.__init__(self)

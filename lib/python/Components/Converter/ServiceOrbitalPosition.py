@@ -5,7 +5,6 @@ from ServiceReference import resolveAlternate
 
 from Components.Element import cached
 
-
 class ServiceOrbitalPosition(Converter, object):
 	FULL = 0
 	SHORT = 1

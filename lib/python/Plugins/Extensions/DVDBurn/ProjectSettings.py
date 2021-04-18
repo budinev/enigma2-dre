@@ -9,7 +9,6 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 
-
 class FileBrowser(Screen, HelpableScreen):
 
 	def __init__(self, session, scope, configRef):
@@ -82,7 +81,6 @@ class FileBrowser(Screen, HelpableScreen):
 		if self.scope == "isopath":
 			self.close(self["filelist"].getCurrentDirectory(), self.scope, self.configRef)
 		self.close(None, False, None)
-
 
 class ProjectSettings(Screen, ConfigListScreen):
 	skin = """

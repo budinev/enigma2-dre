@@ -7,7 +7,6 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from os import path
 from skin import loadPixmap
 
-
 class Pixmap(GUIComponent):
 	GUI_WIDGET = ePixmap
 
@@ -15,12 +14,10 @@ class Pixmap(GUIComponent):
 		s = self.instance.size()
 		return (s.width(), s.height())
 
-
 class PixmapConditional(ConditionalWidget, Pixmap):
 	def __init__(self, withTimer=True):
 		ConditionalWidget.__init__(self)
 		Pixmap.__init__(self)
-
 
 class MovingPixmap(Pixmap):
 	def __init__(self):
@@ -87,7 +84,6 @@ class MovingPixmap(Pixmap):
 			else:
 				self.moving = False
 				self.startMoving()
-
 
 class MultiPixmap(Pixmap):
 	def __init__(self):

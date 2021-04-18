@@ -4,7 +4,6 @@ from enigma import eLabel, eSlider, iFrontendInformation
 
 from math import log
 
-
 class TunerInfo(GUIComponent):
 	SNR = 0
 	SNR_DB = 1

@@ -1,7 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
-
 class ProgressToText(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)

@@ -231,7 +231,6 @@ class SkinSelector(Screen, HelpableScreen):
 			current = current.replace("_", " ")
 		return current
 
-
 class LcdSkinSelector(SkinSelector):
 	def __init__(self, session, screenTitle=_("Display Skin")):
 		SkinSelector.__init__(self, session, screenTitle=screenTitle)
@@ -240,7 +239,6 @@ class LcdSkinSelector(SkinSelector):
 		self.config = config.skin.display_skin
 		self.current = currentDisplaySkin
 		self.xmlList = ["skin_display.xml", "skin_display_picon.xml"]
-
 
 class SkinSelectorSummary(Screen):
 	def __init__(self, session, parent):

@@ -5,10 +5,8 @@ def CutListEditor(session, service=None):
 	import ui
 	return ui.CutListEditor(session, service)
 
-
 def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
-
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Cutlist editor"), description=_("Cutlist editor..."),

@@ -14,7 +14,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection, ConfigYesNo
 import random
 
-
 class ResultParser:
 	TYPE_BYORBPOS = 0
 	TYPE_BYINDEX = 1
@@ -120,7 +119,6 @@ class ResultParser:
 					text += self.getTextualResultForIndex(index, logfulltransponders=True)
 					text += "\n-----------------------------------------------------\n"
 		return text
-
 
 class DiseqcTester(Screen, TuneTest, ResultParser):
 	skin = """
@@ -502,7 +500,6 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if len(self.list) > 0 and not self.running:
 			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
 
-
 class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 
 	def __init__(self, session, feid):
@@ -581,7 +578,6 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-
 class DiseqcTesterNimSelection(NimSelection):
 
 	def __init__(self, session, args=None):
@@ -603,7 +599,6 @@ class DiseqcTesterNimSelection(NimSelection):
 			return True
 		return False
 
-
 def DiseqcTesterMain(session, **kwargs):
 	nimList = nimmanager.getNimListOfType("DVB-S")
 	if len(nimList) == 0:
@@ -614,13 +609,11 @@ def DiseqcTesterMain(session, **kwargs):
 		else:
 			session.open(DiseqcTesterNimSelection)
 
-
 def DiseqcTesterStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("DiSEqC Tester"), DiseqcTesterMain, "diseqc_tester", None)]
 	else:
 		return []
-
 
 def Plugins(**kwargs):
 	if (nimmanager.hasNimType("DVB-S")):

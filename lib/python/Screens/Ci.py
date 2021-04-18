@@ -13,19 +13,15 @@ import Screens.Standby
 
 forceNotShowCiMessages = False
 
-
 def setCIBitrate(configElement):
 	eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal if configElement.value == "no" else eDVBCI_UI.rateHigh)
-
 
 def setdvbCiDelay(configElement):
 	open(SystemInfo["CommonInterfaceCIDelay"], "w").write(configElement.value)
 	configElement.save()
 
-
 def setRelevantPidsRouting(configElement):
 	open(SystemInfo["CI%dRelevantPidsRoutingSupport" % configElement.slotid], "w").write("yes" if configElement.value else "no")
-
 
 def InitCiConfig():
 	config.ci = ConfigSubList()
@@ -48,7 +44,6 @@ def InitCiConfig():
 		if SystemInfo["CommonInterfaceCIDelay"]:
 			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16"), ("32"), ("64"), ("128"), ("256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
-
 
 class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="", screen_data=None):
@@ -303,7 +298,6 @@ class MMIDialog(Screen):
 
 		#FIXME: check for mmi-session closed
 
-
 class CiMessageHandler:
 	def __init__(self):
 		self.session = None
@@ -361,9 +355,7 @@ class CiMessageHandler:
 		if slot in self.ci:
 			del self.ci[slot]
 
-
 CiHandler = CiMessageHandler()
-
 
 class CiSelection(Screen):
 	def __init__(self, session):
@@ -509,7 +501,6 @@ class CiSelection(Screen):
 			if state != -1:
 				CiHandler.unregisterCIMessageHandler(slot)
 		self.close()
-
 
 class PermanentPinEntry(Screen, ConfigListScreen):
 	def __init__(self, session, pin, pin_slot):

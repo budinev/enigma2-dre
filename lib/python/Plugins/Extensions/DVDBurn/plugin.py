@@ -1,16 +1,13 @@
 from Plugins.Plugin import PluginDescriptor
 
-
 def main(session, **kwargs):
 	import TitleList
 	#project.addService(service)
 	return session.open(TitleList.TitleList)
 
-
 def main_add(session, service, **kwargs):
 	dvdburn = main(session, **kwargs)
 	dvdburn.selectedSource(service)
-
 
 def Plugins(**kwargs):
 	descr = _("Burn to DVD")

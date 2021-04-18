@@ -5,7 +5,6 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 
-
 class Console(Screen):
 	#TODO move this to skin.xml
 	skin = """
@@ -92,6 +91,7 @@ class Console(Screen):
 			self.hide()
 		else:
 			self.show()
+
 
 	def cancel(self):
 		if self.finished:

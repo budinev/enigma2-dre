@@ -9,7 +9,6 @@ import os
 import random
 from sys import maxint
 
-
 class InfoBarScreenSaver:
 	def __init__(self):
 		self.onExecBegin.append(self.__onExecBegin)
@@ -59,7 +58,6 @@ class InfoBarScreenSaver:
 			self.show()
 			self.ScreenSaverTimerStart()
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
-
 
 class Screensaver(Screen):
 	def __init__(self, session):

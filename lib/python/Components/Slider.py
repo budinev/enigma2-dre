@@ -3,7 +3,6 @@ from VariableValue import VariableValue
 
 from enigma import eSlider
 
-
 class Slider(VariableValue, GUIComponent):
 	def __init__(self, min, max):
 		VariableValue.__init__(self)

@@ -2,7 +2,6 @@ from Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Input import Input
 
-
 class MinuteInput(Screen):
 		def __init__(self, session, basemins=5):
 			Screen.__init__(self, session)

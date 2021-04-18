@@ -1,7 +1,6 @@
 from Converter import Converter
 from Components.Element import cached
 
-
 class TextCase(Converter):
 	"""Converts a StaticText into upper/lower case."""
 	UPPER = 0

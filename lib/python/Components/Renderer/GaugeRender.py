@@ -3,7 +3,6 @@ from Renderer import Renderer
 
 from enigma import eGauge
 
-
 class GaugeRender(VariableValue, Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -25,9 +24,11 @@ class GaugeRender(VariableValue, Renderer):
 	def postWidgetCreate(self, instance):
 		instance.setValue(0)
 
+	
 	def setValue(self, value):
 		#self.instance.setValue(5)
 		if self.instance is not None:
 			self.instance.setValue(value)
+
 
 	#value = property(setValue)

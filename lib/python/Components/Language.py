@@ -5,7 +5,6 @@ import os
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
-
 class Language:
 	def __init__(self):
 		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
@@ -131,6 +130,5 @@ class Language:
 
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
-
 
 language = Language()

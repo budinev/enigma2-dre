@@ -1,6 +1,5 @@
 from Source import Source
 
-
 class Config(Source):
 	def __init__(self, config):
 		Source.__init__(self)

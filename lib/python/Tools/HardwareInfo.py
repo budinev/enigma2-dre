@@ -2,7 +2,6 @@ from Tools.Directories import SCOPE_SKIN, resolveFilename
 
 hw_info = None
 
-
 class HardwareInfo:
 	device_name = _("unavailable")
 	device_brandname = None

@@ -1,7 +1,6 @@
 from Source import Source
 from enigma import eDVBResourceManager
 
-
 class TunerInfo(Source):
 	FE_USE_MASK = 0
 

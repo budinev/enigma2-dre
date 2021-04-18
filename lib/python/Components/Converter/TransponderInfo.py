@@ -6,7 +6,6 @@ from ServiceReference import resolveAlternate, ServiceReference
 from Tools.Transponder import ConvertToHumanReadable
 import Screens.InfoBar
 
-
 class TransponderInfo(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)

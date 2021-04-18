@@ -2,7 +2,6 @@ from enigma import iRdsDecoder, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
-
 class RdsInfo(Converter, object):
 	RASS_INTERACTIVE_AVAILABLE = 0
 	RTP_TEXT_CHANGED = 1

@@ -525,5 +525,4 @@ class HdmiCec:
 			fp.write(output)
 			fp.close()
 
-
 hdmi_cec = HdmiCec()

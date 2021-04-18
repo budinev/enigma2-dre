@@ -1,6 +1,5 @@
 from Components.Element import Element
 
-
 class Converter(Element):
 	def __init__(self, arguments):
 		Element.__init__(self)

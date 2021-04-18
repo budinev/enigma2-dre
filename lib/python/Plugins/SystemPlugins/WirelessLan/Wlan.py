@@ -27,18 +27,14 @@ config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default="WPA2"))
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
-
 def existBcmWifi(iface):
 	return os.path.exists("/tmp/bcm/" + iface)
-
 
 def getWlConfName(iface):
 	return "/etc/wl.conf.%s" % iface
 
-
 def getWlanConfigName(iface):
 	return '/etc/wpa_supplicant.' + iface + '.conf'
-
 
 class Wlan:
 	def __init__(self, iface=None):
@@ -149,9 +145,7 @@ class Wlan:
 				self.oldInterfaceState = None
 				self.iface = None
 
-
 iWlan = Wlan()
-
 
 class wpaSupplicant:
 	def __init__(self):
@@ -348,7 +342,6 @@ class wpaSupplicant:
 		#print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
-
 class Status:
 	def __init__(self):
 		self.wlaniface = {}
@@ -455,6 +448,5 @@ class Status:
 		if self.iface in self.wlaniface and attribute in self.wlaniface[self.iface]:
 			return self.wlaniface[self.iface][attribute]
 		return None
-
 
 iStatus = Status()

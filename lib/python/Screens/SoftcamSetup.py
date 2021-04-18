@@ -12,7 +12,6 @@ import os
 from Tools.camcontrol import CamControl
 from enigma import eTimer
 
-
 class SoftcamSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="SoftcamSetup" position="center,center" size="560,550" >
@@ -27,7 +26,6 @@ class SoftcamSetup(Screen, ConfigListScreen):
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 

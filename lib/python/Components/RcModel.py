@@ -2,7 +2,6 @@ import os
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Directories import SCOPE_SKIN, resolveFilename
 
-
 class RcModel:
 	RcModels = {}
 
@@ -43,6 +42,5 @@ class RcModel:
 
 	def getRcPositions(self):
 		return self.getRcFile('xml')
-
 
 rc_model = RcModel()

@@ -1,7 +1,6 @@
 from Screens.Ci import MMIDialog
 import socketmmi
 
-
 class SocketMMIMessageHandler:
 	def __init__(self):
 		self.session = None

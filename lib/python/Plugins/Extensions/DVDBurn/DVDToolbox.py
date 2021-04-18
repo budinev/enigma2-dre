@@ -9,7 +9,6 @@ from Components.Harddisk import harddiskmanager
 from Components.Console import Console
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
-
 class DVDToolbox(Screen):
 	skin = """
 		<screen name="DVDToolbox" position="center,center"  size="560,445" title="DVD media toolbox" >
@@ -157,7 +156,6 @@ class DVDToolbox(Screen):
 		hotplugNotifier.remove(self.update)
 		self.close()
 
-
 class DVDformatJob(Job):
 	def __init__(self, toolbox):
 		Job.__init__(self, _("DVD media toolbox"))
@@ -168,10 +166,8 @@ class DVDformatJob(Job):
 		self.tasks[0].args += self.tasks[0].retryargs
 		Job.retry(self)
 
-
 class DVDformatTaskPostcondition(Condition):
 	RECOVERABLE = True
-
 	def check(self, task):
 		return task.error is None
 
@@ -182,10 +178,8 @@ class DVDformatTaskPostcondition(Condition):
 			task.ERROR_UNKNOWN: _("An unknown error occurred!")
 		}[task.error]
 
-
 class DVDformatTask(Task):
 	ERROR_ALREADYFORMATTED, ERROR_NOTWRITEABLE, ERROR_UNKNOWN = range(3)
-
 	def __init__(self, job, extra_args=[]):
 		Task.__init__(self, job, ("RW medium format"))
 		self.toolbox = job.toolbox

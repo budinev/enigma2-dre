@@ -4,7 +4,6 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, e
 from ServiceReference import resolveAlternate
 from Components.Element import cached
 
-
 class ServiceName(Converter, object):
 	NAME = 0
 	PROVIDER = 1

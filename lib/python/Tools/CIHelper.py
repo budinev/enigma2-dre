@@ -5,7 +5,6 @@ from Components.config import config
 import NavigationInstance
 import os
 
-
 class CIHelper:
 
 	CI_ASSIGNMENT_LIST = None
@@ -19,7 +18,6 @@ class CIHelper:
 		NUM_CI = SystemInfo["CommonInterface"]
 		if NUM_CI and NUM_CI > 0:
 			self.CI_ASSIGNMENT_LIST = []
-
 			def getValue(definitions, default):
 				Len = len(definitions)
 				return Len > 0 and definitions[Len - 1].text or default
@@ -187,9 +185,7 @@ class CIHelper:
 				return 0
 		return 1
 
-
 cihelper = CIHelper()
-
 
 def isPlayable(service):
 	ret = cihelper.isPlayable(service)

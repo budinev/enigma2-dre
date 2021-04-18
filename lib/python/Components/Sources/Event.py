@@ -1,6 +1,5 @@
 from Source import Source
 
-
 class Event(Source, object):
 	def __init__(self):
 		Source.__init__(self)

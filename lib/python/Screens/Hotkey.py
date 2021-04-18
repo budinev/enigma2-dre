@@ -16,7 +16,6 @@ from Components.Pixmap import Pixmap
 from Components.Label import Label
 import os
 
-
 class hotkey:
 	functions = None
 	hotkeys = [(_("Red") + " " + _("long"), "red_long", ""),
@@ -115,7 +114,6 @@ class hotkey:
 		("VOD" + " " + _("long"), "vod_long", ""),
 		("WWW Portal", "www", ""),
 		("WWW Portal" + " " + _("long"), "www_long", "")]
-
 
 def getHotkeyFunctions():
 	hotkey.functions = []
@@ -243,16 +241,13 @@ def getHotkeyFunctions():
 			x = x[:-3]
 			hotkey.functions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 
-
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
 for x in hotkey.hotkeys:
 	exec "config.misc.hotkey.%s = ConfigText(default='%s')" % x[1:]
 
-
 class HotkeySetup(Screen):
 	ALLOW_SUSPEND = False
-
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.session = session
@@ -344,7 +339,6 @@ class HotkeySetup(Screen):
 						selected.append(ChoiceEntryComponent('', ((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 		self["description"].setText(_("Press or select button and then press 'OK' for attach next function or edit attached.") if len(selected) else _("Press or select button and then press 'OK' for attach function."))
-
 
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
@@ -547,7 +541,6 @@ class HotkeySetupSelect(Screen):
 	def cancelCallback(self, answer):
 		answer and self.close(None)
 
-
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
 		if action in tuple(x[1] for x in hotkey.hotkeys) and action in self.actions:
@@ -558,7 +551,6 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-
 class helpableHotkeyActionMap(HelpableActionMap):
 	def action(self, contexts, action):
 		if action in tuple(x[1] for x in hotkey.hotkeys) and action in self.actions:
@@ -568,7 +560,6 @@ class helpableHotkeyActionMap(HelpableActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
-
 
 class InfoBarHotkey():
 	def __init__(self):

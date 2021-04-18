@@ -1,7 +1,6 @@
 from Source import Source
 from Components.Element import cached
 
-
 class List(Source, object):
 	"""The datasource of a listbox. Currently, the format depends on the used converter. So
 if you put a simple string list in here, you need to use a StringList converter, if you are
@@ -10,7 +9,6 @@ setup the "fonts".
 
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
-
 	def __init__(self, list=[], enableWrapAround=False, item_height=25, fonts=[]):
 		Source.__init__(self)
 		self.__list = list

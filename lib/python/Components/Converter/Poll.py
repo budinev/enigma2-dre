@@ -1,6 +1,5 @@
 from enigma import eTimer
 
-
 class Poll(object):
 	def __init__(self):
 		self.__poll_timer = eTimer()

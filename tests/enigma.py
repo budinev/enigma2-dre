@@ -1,6 +1,5 @@
 # fake-enigma
 
-
 class slot:
 	def __init__(self):
 		self.list = []
@@ -12,7 +11,6 @@ class slot:
 		for x in self.list:
 			x()
 
-
 timers = set()
 
 import time
@@ -20,7 +18,6 @@ import time
 from events import eventfnc
 
 ##################### ENIGMA BASE
-
 
 class eTimer:
 	def __init__(self):
@@ -47,7 +44,6 @@ class eTimer:
 		self.next_activation += self.msec / 1000.0
 		self.timeout()
 
-
 def runIteration():
 	running_timers = list(timers)
 	assert len(running_timers), "no running timers, so nothing will ever happen!"
@@ -68,14 +64,11 @@ def runIteration():
 		running_timers[0].do()
 		running_timers = running_timers[1:]
 
-
 stopped = False
-
 
 def stop():
 	global stopped
 	stopped = True
-
 
 def run(duration=1000):
 	stoptimer = eTimer()
@@ -103,7 +96,6 @@ eListboxPythonStringContent = None
 eListbox = None
 eSubtitleWidget = None
 
-
 class eEPGCache:
 	@classmethod
 	def getInstance(self):
@@ -117,11 +109,9 @@ class eEPGCache:
 	def lookupEventTime(self, ref, query):
 		return None
 
-
 eEPGCache()
 
 getBestPlayableServiceReference = None
-
 
 class pNavigation:
 	def __init__(self):
@@ -143,10 +133,8 @@ class pNavigation:
 	def __repr__(self):
 		return "pNavigation"
 
-
 eRCInput = None
 getPrevAsciiCode = None
-
 
 class eServiceReference:
 
@@ -170,7 +158,6 @@ class eServiceReference:
 	def __repr__(self):
 		return self.toString()
 
-
 class iRecordableService:
 	def __init__(self, ref):
 		self.ref = ref
@@ -190,9 +177,7 @@ class iRecordableService:
 	def __repr__(self):
 		return "iRecordableService(%s)" % repr(self.ref)
 
-
 quitMainloop = None
-
 
 class eAVSwitch:
 	@classmethod
@@ -222,11 +207,9 @@ class eAVSwitch:
 	def setInput(self, value):
 		print "[eAVSwitch] wss set to %d" % value
 
-
 eAVSwitch()
 
 eDVBVolumecontrol = None
-
 
 class eRFmod:
 	@classmethod
@@ -256,7 +239,6 @@ class eRFmod:
 	def setFinetune(self, value):
 		print "[eRFmod] set finetune to %d" % value
 
-
 eRFmod()
 
 
@@ -279,11 +261,9 @@ class eDBoxLCD:
 	def setInverted(self, value):
 		print "[eDBoxLCD] set inverted to %d" % value
 
-
 eDBoxLCD()
 
 Misc_Options = None
-
 
 class eServiceCenter:
 	@classmethod
@@ -297,7 +277,6 @@ class eServiceCenter:
 
 	def info(self, ref):
 		return None
-
 
 eServiceCenter()
 
@@ -329,7 +308,6 @@ Components.config.config.unpickle(my_config)
 
 ##################### ENIGMA ACTIONS
 
-
 class eActionMap:
 	def __init__(self):
 		pass
@@ -343,18 +321,15 @@ def init_nav():
 	import NavigationInstance
 	NavigationInstance.instance = Navigation.Navigation()
 
-
 def init_record_config():
 	print "init recording"
 	import Components.RecordingConfig
 	Components.RecordingConfig.InitRecordingConfig()
 
-
 def init_parental_control():
 	print "init parental"
 	from Components.ParentalControl import InitParentalControl
 	InitParentalControl()
-
 
 def init_all():
 	# this is stuff from StartEnigma.py
