@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2018-02-14 16:51+0330\n"
 "Last-Translator: Persian Prince <persianprince@pe4k.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -71,6 +71,9 @@ msgstr " (رادیو)"
 
 msgid " (TV)"
 msgstr " (تلوزیون)"
+
+msgid " (auto detection)"
+msgstr ""
 
 msgid " (disabled)"
 msgstr " (غیر فعال)"
@@ -355,10 +358,6 @@ msgstr "%s%d دقیقه"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 msgid "(VU+ type)"
 msgstr "(نوع ووپلاس)"
@@ -974,14 +973,6 @@ msgstr ""
 msgid "Alternative"
 msgstr "حالت رادیو متناوب"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "حالت رادیو متناوب"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "حالت رادیو متناوب"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr ""
 
@@ -1446,6 +1437,12 @@ msgstr "صفحه نمایش سیاه"
 
 msgid "Black screen till locked"
 msgstr "صفحه نمایش سیاه تا زمانی که قفل شود"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 #
 msgid "Block noise reduction"
@@ -3259,6 +3256,9 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+msgid "Empty Trash"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4206,7 +4206,7 @@ msgstr "لیست HD"
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4391,6 +4391,9 @@ msgstr "I"
 #, fuzzy
 msgid "I do not want to perform any service scans"
 msgstr "آیا میخواهید اسکن کانال انجام شود ؟"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr ""
@@ -9430,12 +9433,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -10115,7 +10112,8 @@ msgstr ""
 msgid "Upper case"
 msgstr ""
 
-msgid "Uptime"
+#, python-format
+msgid "Uptime: %s\n"
 msgstr ""
 
 msgid "Uruguay"
@@ -11133,9 +11131,6 @@ msgstr ""
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr ""
 
@@ -11198,6 +11193,9 @@ msgstr "بعد از"
 
 msgid "all"
 msgstr "همه"
+
+msgid "all tuners"
+msgstr ""
 
 msgid "alphabetic"
 msgstr ""
@@ -11749,6 +11747,9 @@ msgstr ""
 msgid "not tested"
 msgstr ""
 
+msgid "not valid frontend"
+msgstr ""
+
 msgid "not_tested"
 msgstr ""
 
@@ -11871,6 +11872,10 @@ msgstr "رمانتیک"
 
 msgid "rotor"
 msgstr ""
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "سرعت چرخش موتور"
 
 msgid "running"
 msgstr "در حال اجرا"

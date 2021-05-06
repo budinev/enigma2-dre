@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2020-05-16 18:44+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -72,6 +72,9 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
+msgstr ""
+
+msgid " (auto detection)"
 msgstr ""
 
 msgid " (disabled)"
@@ -384,10 +387,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1074,16 +1073,6 @@ msgstr ""
 msgid "Alternative"
 msgstr "bæta við valkosti"
 
-#
-#, fuzzy
-msgid "Alternative 1"
-msgstr "bæta við valkosti"
-
-#
-#, fuzzy
-msgid "Alternative 2"
-msgstr "bæta við valkosti"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr ""
 
@@ -1558,6 +1547,12 @@ msgid "Black screen"
 msgstr ""
 
 msgid "Black screen till locked"
+msgstr ""
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
 msgstr ""
 
 msgid "Block noise reduction"
@@ -3495,6 +3490,9 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+msgid "Empty Trash"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4523,7 +4521,7 @@ msgstr ""
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4726,6 +4724,9 @@ msgstr ""
 #, fuzzy
 msgid "I do not want to perform any service scans"
 msgstr "Viltu leita að rásum?"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr ""
@@ -10418,12 +10419,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -11217,7 +11212,8 @@ msgstr "Uppfæri efnisyfirlit hugbúnaðar"
 msgid "Upper case"
 msgstr ""
 
-msgid "Uptime"
+#, python-format
+msgid "Uptime: %s\n"
 msgstr ""
 
 msgid "Uruguay"
@@ -12374,9 +12370,6 @@ msgstr "fara upp í fyrsta atriði"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr ""
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr ""
 
@@ -12445,6 +12438,9 @@ msgid "after "
 msgstr ""
 
 msgid "all"
+msgstr ""
+
+msgid "all tuners"
 msgstr ""
 
 #
@@ -13080,6 +13076,9 @@ msgstr "ekki stutt"
 msgid "not tested"
 msgstr ""
 
+msgid "not valid frontend"
+msgstr ""
+
 msgid "not_tested"
 msgstr ""
 
@@ -13222,6 +13221,11 @@ msgstr ""
 
 msgid "rotor"
 msgstr ""
+
+#
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Hraði mótors"
 
 msgid "running"
 msgstr ""

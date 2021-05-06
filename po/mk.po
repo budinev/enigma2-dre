@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:26+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2021-02-19 14:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Muzoss-VELEBRDO\n"
@@ -75,6 +75,10 @@ msgstr " (Радио)"
 
 msgid " (TV)"
 msgstr " (ТВ)"
+
+#, fuzzy
+msgid " (auto detection)"
+msgstr "До избор на аудио"
 
 msgid " (disabled)"
 msgstr " Деактивирано"
@@ -373,10 +377,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 msgid "(VU+ type)"
@@ -973,12 +973,6 @@ msgstr "Исто така, стендбај"
 msgid "Alternative"
 msgstr "Алтернатива"
 
-msgid "Alternative 1"
-msgstr "Алтернатива 1"
-
-msgid "Alternative 2"
-msgstr "Алтернатива 2"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr "Алтернативна URL-адреса за имиџи наведени во \\ \"Флеш имиџ \\\""
 
@@ -1421,6 +1415,12 @@ msgstr "Црна слика"
 
 msgid "Black screen till locked"
 msgstr "Црна слика до завршување"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 msgid "Block noise reduction"
 msgstr "Блокирање и намалување на бучавата"
@@ -3167,6 +3167,10 @@ msgstr "Вградени"
 msgid "Emergency"
 msgstr "Итна помош"
 
+#, fuzzy
+msgid "Empty Trash"
+msgstr "Празно место"
+
 msgid "Empty slot"
 msgstr "Празно место"
 
@@ -4093,8 +4097,8 @@ msgstr "HD лист"
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60"
-msgstr "HD60"
+msgid "HD60/Multibox/Multibox SE"
+msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -4272,6 +4276,10 @@ msgstr "И"
 
 msgid "I do not want to perform any service scans"
 msgstr "Не сакам да извршувам пребарување на канали"
+
+#, fuzzy
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr "Zgemma H7 (нов модел) / H9 (нов модел) / H9COMBO / H9TWIN / H10"
 
 msgid "IDLE"
 msgstr "IDLE"
@@ -9090,12 +9098,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ова поле ви овозможува да пребарувате дополнителна стапка на симболи до %s."
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -9794,7 +9796,8 @@ msgstr "Се ажурира каталогот на софтвер"
 msgid "Upper case"
 msgstr "Големи букви"
 
-msgid "Uptime"
+#, fuzzy, python-format
+msgid "Uptime: %s\n"
 msgstr "Време на работа"
 
 msgid "Uruguay"
@@ -10858,9 +10861,6 @@ msgstr "Префрлување на услугата со тајмер %s!"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr "Zgemma HS / H.2S / H.2H / H5 / H7 (стар модел)"
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr "Zgemma H7 (нов модел) / H9 (нов модел) / H9COMBO / H9TWIN / H10"
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr "Zgemma H9 (стар модел) / I55Plus"
 
@@ -10923,6 +10923,10 @@ msgstr "потоа "
 
 msgid "all"
 msgstr "се"
+
+#, fuzzy
+msgid "all tuners"
+msgstr "Поставки на резервниот тјунер"
 
 msgid "alphabetic"
 msgstr "азбучен"
@@ -11468,6 +11472,10 @@ msgstr "не е поддржано"
 msgid "not tested"
 msgstr "не е тестиран"
 
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Не е пронајден сателитски тјунер!"
+
 msgid "not_tested"
 msgstr "не_тестирано"
 
@@ -11590,6 +11598,10 @@ msgstr "романса"
 
 msgid "rotor"
 msgstr "ротор"
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Тјунерот не е поддржан"
 
 msgid "running"
 msgstr "работи"

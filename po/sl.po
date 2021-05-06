@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Project Slovenia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2020-05-16 18:48+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -75,6 +75,11 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+#
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Izbira jezika zvočne sledi"
 
 #
 msgid " (disabled)"
@@ -412,10 +417,6 @@ msgstr "%s%d min"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 msgid "(VU+ type)"
 msgstr ""
@@ -1129,16 +1130,6 @@ msgstr "Tudi v stanju pripravljenosti"
 msgid "Alternative"
 msgstr "Dodajanje alternativ"
 
-#
-#, fuzzy
-msgid "Alternative 1"
-msgstr "Dodajanje alternativ"
-
-#
-#, fuzzy
-msgid "Alternative 2"
-msgstr "Dodajanje alternativ"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr ""
 
@@ -1659,6 +1650,12 @@ msgstr "Črni zaslon"
 
 msgid "Black screen till locked"
 msgstr "Črni zaslon do sprejema signala"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 #
 msgid "Block noise reduction"
@@ -3693,6 +3690,9 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+msgid "Empty Trash"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4757,7 +4757,7 @@ msgstr "HD seznam"
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4960,6 +4960,9 @@ msgstr ""
 #, fuzzy
 msgid "I do not want to perform any service scans"
 msgstr "Želite iskati kanale?"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr ""
@@ -10665,12 +10668,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -11477,8 +11474,8 @@ msgid "Upper case"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Uptime"
+#, fuzzy, python-format
+msgid "Uptime: %s\n"
 msgstr "Časovnik spanja"
 
 msgid "Uruguay"
@@ -12662,9 +12659,6 @@ msgstr "Pojdi na prvi kanal"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr ""
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr ""
 
@@ -12737,6 +12731,10 @@ msgstr "potem"
 
 msgid "all"
 msgstr "vse"
+
+#, fuzzy
+msgid "all tuners"
+msgstr "Naslov rezervnega oddaljenega sprejemnika"
 
 #
 msgid "alphabetic"
@@ -13377,6 +13375,10 @@ msgstr "ni podprto"
 msgid "not tested"
 msgstr ""
 
+#, fuzzy
+msgid "not valid frontend"
+msgstr "napačen tip"
+
 msgid "not_tested"
 msgstr ""
 
@@ -13521,6 +13523,10 @@ msgstr ""
 
 msgid "rotor"
 msgstr ""
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Kanalnik ni podprt"
 
 msgid "running"
 msgstr ""

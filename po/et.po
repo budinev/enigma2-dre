@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Openpli\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -75,6 +75,10 @@ msgstr " (Raadio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Heli valik"
 
 msgid " (disabled)"
 msgstr " (keelatud)"
@@ -371,10 +375,6 @@ msgstr "%s%d min"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 msgid "(VU+ type)"
 msgstr "(VU+ tüüp)"
@@ -978,14 +978,6 @@ msgstr "Ka ooteseisundis"
 msgid "Alternative"
 msgstr "Alternatiivne"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "Alternatiivne"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "Alternatiivne"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr ""
 
@@ -1434,6 +1426,12 @@ msgstr "Must ekraan"
 
 msgid "Black screen till locked"
 msgstr "Must ekraan lukustumiseni"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 msgid "Block noise reduction"
 msgstr "Plokkmüra vähendamine"
@@ -3192,6 +3190,9 @@ msgstr "sisseehitatud"
 msgid "Emergency"
 msgstr ""
 
+msgid "Empty Trash"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4130,7 +4131,7 @@ msgstr "HD nimekiri"
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4310,6 +4311,9 @@ msgstr "I"
 
 msgid "I do not want to perform any service scans"
 msgstr "Ei soovi mingeid teenuse otsinguid"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr "JÕUDEOLEKUS"
@@ -9210,12 +9214,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "See väli võimaldab otsida täiendavalt sümbolikiirusi kuni %s."
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -9944,8 +9942,8 @@ msgstr "Uuendan tarkvara kataloogi"
 msgid "Upper case"
 msgstr "Suurtähed"
 
-#, fuzzy
-msgid "Uptime"
+#, fuzzy, python-format
+msgid "Uptime: %s\n"
 msgstr "Unetaimer"
 
 msgid "Uruguay"
@@ -11032,9 +11030,6 @@ msgstr "Salvestatud taimeri teenusesse %s!"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr ""
 
@@ -11098,6 +11093,10 @@ msgstr "pärast "
 
 msgid "all"
 msgstr "kõik"
+
+#, fuzzy
+msgid "all tuners"
+msgstr "Kaugvastuvõtja tuuneri seaded"
 
 msgid "alphabetic"
 msgstr "tähestikujärjekord"
@@ -11649,6 +11648,10 @@ msgstr "pole toetatud"
 msgid "not tested"
 msgstr "pole testitud"
 
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Ei leitud satelliidi tuunerit!"
+
 msgid "not_tested"
 msgstr "pole_testitud"
 
@@ -11772,6 +11775,10 @@ msgstr "romantika"
 #, fuzzy
 msgid "rotor"
 msgstr "Mootor: "
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Tuuner pole toetatud"
 
 msgid "running"
 msgstr "töötab"

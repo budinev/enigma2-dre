@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2021-02-25 12:06+0100\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -76,6 +76,10 @@ msgstr " (Rádio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Výber zvuku"
 
 msgid " (disabled)"
 msgstr " (zakázané)"
@@ -387,10 +391,6 @@ msgstr "%s%d min"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 msgid "(VU+ type)"
 msgstr "(Typ VU+)"
@@ -985,12 +985,6 @@ msgstr "Tiež v pohotovostnom režime"
 msgid "Alternative"
 msgstr "Alternatívne"
 
-msgid "Alternative 1"
-msgstr "Alternatíva 1"
-
-msgid "Alternative 2"
-msgstr "Alternatíva 2"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr "Alternatívna adresa URL pre image uvedené vo FlashImage"
 
@@ -1433,6 +1427,12 @@ msgstr "Čierna obrazovka"
 
 msgid "Black screen till locked"
 msgstr "Čierna obrazovka po uzamknutí"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 msgid "Block noise reduction"
 msgstr "Potlačenie blokového šumu"
@@ -3180,6 +3180,10 @@ msgstr "Vložené"
 msgid "Emergency"
 msgstr "< Núdzový >"
 
+#, fuzzy
+msgid "Empty Trash"
+msgstr "Prázdny slot"
+
 msgid "Empty slot"
 msgstr "Prázdny slot"
 
@@ -4106,8 +4110,8 @@ msgstr "Zoznam HD"
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60"
-msgstr "HD60"
+msgid "HD60/Multibox/Multibox SE"
+msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -4285,6 +4289,10 @@ msgstr "I"
 
 msgid "I do not want to perform any service scans"
 msgstr "Nechcem vykonať žiadne prehľadávanie staníc"
+
+#, fuzzy
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr "Zgemma H7(nový model)/H9(nový model)/H9COMBO/H9TWIN/H10"
 
 msgid "IDLE"
 msgstr "NEČINNÝ"
@@ -9118,15 +9126,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Toto pole umožňure vyhľadať dodatočnú symbolovú rýchlosť až do %s."
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-"Tento softvér je určený pre vývojárov a testerov.\n"
-"Nebude poskytnutá žiadna podpora!\n"
-"Naozaj tomu rozumiete?"
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -9826,7 +9825,8 @@ msgstr "Aktualizácia katalógu softvéru"
 msgid "Upper case"
 msgstr "Veľké písmená"
 
-msgid "Uptime"
+#, fuzzy, python-format
+msgid "Uptime: %s\n"
 msgstr "Čas zapnutia"
 
 msgid "Uruguay"
@@ -10892,9 +10892,6 @@ msgstr "Program %s prepnutý časovačom!"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7(starý model)"
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr "Zgemma H7(nový model)/H9(nový model)/H9COMBO/H9TWIN/H10"
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr "Zgemma H9(starý model)/I55Plus"
 
@@ -10957,6 +10954,10 @@ msgstr "po "
 
 msgid "all"
 msgstr "všetky"
+
+#, fuzzy
+msgid "all tuners"
+msgstr "Nastavenie záložného tuneru"
 
 msgid "alphabetic"
 msgstr "podľa abecedy"
@@ -11502,6 +11503,10 @@ msgstr "nepodporované"
 msgid "not tested"
 msgstr "netestované"
 
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Nebol nájdený satelitný frontend!"
+
 msgid "not_tested"
 msgstr "netestované"
 
@@ -11624,6 +11629,10 @@ msgstr "romantika"
 
 msgid "rotor"
 msgstr "Rotor: "
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Tuner nie je podporovaný"
 
 msgid "running"
 msgstr "prebieha"

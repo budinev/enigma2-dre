@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -75,6 +75,9 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
+msgstr ""
+
+msgid " (auto detection)"
 msgstr ""
 
 msgid " (disabled)"
@@ -400,10 +403,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1116,16 +1115,6 @@ msgstr ""
 msgid "Alternative"
 msgstr "dodaj alternative"
 
-#
-#, fuzzy
-msgid "Alternative 1"
-msgstr "dodaj alternative"
-
-#
-#, fuzzy
-msgid "Alternative 2"
-msgstr "dodaj alternative"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr ""
 
@@ -1646,6 +1635,12 @@ msgid "Black screen"
 msgstr ""
 
 msgid "Black screen till locked"
+msgstr ""
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
 msgstr ""
 
 #
@@ -3707,6 +3702,9 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+msgid "Empty Trash"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4760,7 +4758,7 @@ msgstr ""
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4963,6 +4961,9 @@ msgstr ""
 #, fuzzy
 msgid "I do not want to perform any service scans"
 msgstr "Želite li napraviti skeniranje kanala?"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr ""
@@ -10739,12 +10740,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -11555,7 +11550,8 @@ msgstr "Ažuriranje kataloga softvera"
 msgid "Upper case"
 msgstr ""
 
-msgid "Uptime"
+#, python-format
+msgid "Uptime: %s\n"
 msgstr ""
 
 msgid "Uruguay"
@@ -12725,9 +12721,6 @@ msgstr "Pomeri gore na prvi unos"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr ""
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr ""
 
@@ -12798,6 +12791,9 @@ msgid "after "
 msgstr ""
 
 msgid "all"
+msgstr ""
+
+msgid "all tuners"
 msgstr ""
 
 #
@@ -13436,6 +13432,9 @@ msgstr "nije podržano"
 msgid "not tested"
 msgstr ""
 
+msgid "not valid frontend"
+msgstr ""
+
 msgid "not_tested"
 msgstr ""
 
@@ -13578,6 +13577,11 @@ msgstr ""
 
 msgid "rotor"
 msgstr ""
+
+#
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Brzina okretanja rotora"
 
 msgid "running"
 msgstr ""

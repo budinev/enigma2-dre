@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2013-10-20 19:13-0300\n"
 "Last-Translator: Diogo <pingflood@gmail.com>\n"
 "Language-Team: Traduzido por Frank Viana <franksrviana@gmail.com>\n"
@@ -72,6 +72,10 @@ msgstr " (Rádio)"
 
 msgid " (TV)"
 msgstr ""
+
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Selecionar áudio"
 
 msgid " (disabled)"
 msgstr ""
@@ -366,10 +370,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 msgid "(VU+ type)"
@@ -974,14 +974,6 @@ msgstr ""
 msgid "Alternative"
 msgstr "Adicionar alternativas"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "Adicionar alternativas"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "Adicionar alternativas"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr ""
 
@@ -1431,6 +1423,12 @@ msgstr "Tela preta"
 
 msgid "Black screen till locked"
 msgstr "Tela preta até travar"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 msgid "Block noise reduction"
 msgstr ""
@@ -3208,6 +3206,9 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+msgid "Empty Trash"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4135,7 +4136,7 @@ msgstr "Lista HD"
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4320,6 +4321,9 @@ msgstr ""
 #, fuzzy
 msgid "I do not want to perform any service scans"
 msgstr "Realizar uma busca de canais?"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr ""
@@ -9243,12 +9247,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -9961,8 +9959,8 @@ msgstr "Atualizando o catálogo de software..."
 msgid "Upper case"
 msgstr ""
 
-#, fuzzy
-msgid "Uptime"
+#, fuzzy, python-format
+msgid "Uptime: %s\n"
 msgstr "Temporizador"
 
 msgid "Uruguay"
@@ -11039,9 +11037,6 @@ msgstr "Ir para o primeiro canal"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr ""
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr ""
 
@@ -11104,6 +11099,9 @@ msgid "after "
 msgstr "após "
 
 msgid "all"
+msgstr ""
+
+msgid "all tuners"
 msgstr ""
 
 msgid "alphabetic"
@@ -11657,6 +11655,10 @@ msgstr "Não suportado"
 msgid "not tested"
 msgstr ""
 
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Tipo inválido"
+
 msgid "not_tested"
 msgstr ""
 
@@ -11780,6 +11782,10 @@ msgstr "Romance"
 #, fuzzy
 msgid "rotor"
 msgstr "Automobilismo"
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Velocidade de giro do motor"
 
 #, fuzzy
 msgid "running"

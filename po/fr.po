@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
-"PO-Revision-Date: 2021-02-17 20:28+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
+"PO-Revision-Date: 2021-04-29 14:09+0200\n"
 "Last-Translator: Pr2\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.3\n"
 
 msgid ""
 "\n"
@@ -75,6 +75,9 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+msgid " (auto detection)"
+msgstr " (détection automatique)"
 
 msgid " (disabled)"
 msgstr " (Désactivé)"
@@ -374,10 +377,6 @@ msgstr "%s%d min"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 msgid "(VU+ type)"
 msgstr "(type VU+)"
@@ -973,12 +972,6 @@ msgstr "Aussi en veille"
 msgid "Alternative"
 msgstr "Ajouter les alternatifs"
 
-msgid "Alternative 1"
-msgstr "Variante 1"
-
-msgid "Alternative 2"
-msgstr "Variante 2"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr "URL alternative pour les images listées sur FlashImage"
 
@@ -1421,6 +1414,12 @@ msgstr "Ecran noir"
 
 msgid "Black screen till locked"
 msgstr "Ecran noir jusqu'au verrouillage"
+
+msgid "Blindscan"
+msgstr "Recherche à l'aveugle"
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr "Recherche à l'aveugle terrestre (si possible)"
 
 msgid "Block noise reduction"
 msgstr "Bloc réduction bruit"
@@ -3167,6 +3166,9 @@ msgstr "Embarqué"
 msgid "Emergency"
 msgstr "Urgence"
 
+msgid "Empty Trash"
+msgstr "Vider la corbeille"
+
 msgid "Empty slot"
 msgstr "Emplacement vide."
 
@@ -4094,8 +4096,8 @@ msgstr "Liste HD"
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60"
-msgstr "HD60"
+msgid "HD60/Multibox/Multibox SE"
+msgstr "HD60/Multibox/Multibox SE"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -4273,6 +4275,9 @@ msgstr "I"
 
 msgid "I do not want to perform any service scans"
 msgstr "Je ne désire pas rechercher les services"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr "I55SE/H7(nouveau modèle)/H9(nouveau modèle)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
 
 msgid "IDLE"
 msgstr "VEILLE"
@@ -9107,15 +9112,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ce champ vous permet de chercher un taux de symbole additionnel de %s."
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-"Cette image est destinée aux développeurs et testeurs.\n"
-"Aucun support ne sera fourni!\n"
-"Comprenez-vous cela?"
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -9818,8 +9814,9 @@ msgstr "Mise à jour du catalogue logiciel"
 msgid "Upper case"
 msgstr "Majuscules"
 
-msgid "Uptime"
-msgstr "Durée de fonctionnement"
+#, python-format
+msgid "Uptime: %s\n"
+msgstr "Disponibilité: %s\n"
 
 msgid "Uruguay"
 msgstr "Uruguay"
@@ -10886,9 +10883,6 @@ msgstr "Zapper vers le timer de service %s!"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr "Zgemma H9(old model)/I55Plus"
 
@@ -10951,6 +10945,9 @@ msgstr "Après "
 
 msgid "all"
 msgstr "Toutes les lignes"
+
+msgid "all tuners"
+msgstr "tous les tuners"
 
 msgid "alphabetic"
 msgstr "Alphabétique"
@@ -11496,6 +11493,9 @@ msgstr "Pas supporté"
 msgid "not tested"
 msgstr "pas testé"
 
+msgid "not valid frontend"
+msgstr "frontend non valide"
+
 msgid "not_tested"
 msgstr "pas_testé"
 
@@ -11618,6 +11618,9 @@ msgstr "Romance"
 
 msgid "rotor"
 msgstr "rotor"
+
+msgid "rotor is not used"
+msgstr "rotor n’est pas utilisé"
 
 msgid "running"
 msgstr "En cours d'éxécution"

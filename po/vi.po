@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 20:18+0100\n"
+"POT-Creation-Date: 2021-04-29 14:07+0200\n"
 "PO-Revision-Date: 2019-11-19 08:58+0700\n"
 "Last-Translator: krong\n"
 "Language-Team: none\n"
@@ -75,6 +75,10 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Để lựa chọn âm thanh"
 
 msgid " (disabled)"
 msgstr " (cho phép/không cho phép)"
@@ -374,10 +378,6 @@ msgstr "%s%d phút"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 msgid "(VU+ type)"
 msgstr "(VU + loại)"
@@ -977,12 +977,6 @@ msgstr "Ngoài ra ở chế độ chờ"
 msgid "Alternative"
 msgstr "Thay thế"
 
-msgid "Alternative 1"
-msgstr "Phương án 1"
-
-msgid "Alternative 2"
-msgstr "Phương án 2"
-
 msgid "Alternative URL for images listed on FlashImage"
 msgstr "URL thay thế cho hình ảnh được liệt kê trên FlashImage"
 
@@ -1424,6 +1418,12 @@ msgstr "Màn hình đen"
 
 msgid "Black screen till locked"
 msgstr "Màn hình đen cho đến khi bị khóa"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 msgid "Block noise reduction"
 msgstr "Giảm tiếng ồn"
@@ -3183,6 +3183,10 @@ msgstr "Nhúng"
 msgid "Emergency"
 msgstr ""
 
+#, fuzzy
+msgid "Empty Trash"
+msgstr "Chỗ trống"
+
 msgid "Empty slot"
 msgstr "Chỗ trống"
 
@@ -4124,7 +4128,7 @@ msgstr "Danh sách HD"
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60"
+msgid "HD60/Multibox/Multibox SE"
 msgstr ""
 
 msgid "HDMI"
@@ -4303,6 +4307,9 @@ msgstr "I"
 
 msgid "I do not want to perform any service scans"
 msgstr "Tôi không muốn thực hiện bất kỳ quét dịch vụ nào"
+
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"
+msgstr ""
 
 msgid "IDLE"
 msgstr "IDLE"
@@ -9164,12 +9171,6 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Trường này cho phép bạn tìm kiếm tỷ lệ biểu tượng bổ sung lên đến%s."
 
 msgid ""
-"This image is intended for developers and testers.\n"
-"No support will be provided!\n"
-"Do you understand this?"
-msgstr ""
-
-msgid ""
 "This info is for developers only.\n"
 "For normal users it is not relevant.\n"
 "Please don't panic if you see values displayed looking suspicious!"
@@ -9877,8 +9878,8 @@ msgstr "Cập nhật danh mục phần mềm"
 msgid "Upper case"
 msgstr "Chữ hoa"
 
-#, fuzzy
-msgid "Uptime"
+#, fuzzy, python-format
+msgid "Uptime: %s\n"
 msgstr "Hẹn giờ ngủ"
 
 msgid "Uruguay"
@@ -10953,9 +10954,6 @@ msgstr "Chuyển sang dịch vụ hẹn giờ%s!"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7(old model)"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 
-msgid "Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"
-msgstr ""
-
 #, fuzzy
 msgid "Zgemma H9(old model)/I55Plus"
 msgstr "Zgemma H9/i55 Plus"
@@ -11019,6 +11017,10 @@ msgstr "sau "
 
 msgid "all"
 msgstr "tất cả các"
+
+#, fuzzy
+msgid "all tuners"
+msgstr "Thiết lập điều chỉnh dự phòng"
 
 msgid "alphabetic"
 msgstr "bảng chữ cái"
@@ -11566,6 +11568,10 @@ msgstr "không được hỗ trợ"
 msgid "not tested"
 msgstr "không được kiểm tra"
 
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Không tìm thấy mặt trước vệ tinh!"
+
 msgid "not_tested"
 msgstr "chưa được kiểm tra"
 
@@ -11689,6 +11695,10 @@ msgstr "lãng mạn"
 #, fuzzy
 msgid "rotor"
 msgstr "Cánh quạt: "
+
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Bộ chỉnh tần số không được hỗ trợ"
 
 msgid "running"
 msgstr "đang chạy"
