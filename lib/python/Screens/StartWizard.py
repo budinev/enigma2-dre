@@ -9,7 +9,6 @@ try:
 except:
 	OverscanWizard = None
 
-from Components.About import about
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
 from Components.Label import Label
@@ -23,7 +22,6 @@ import os
 config.misc.firstrun = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
 config.misc.do_overscanwizard = ConfigBoolean(default = OverscanWizard and config.skin.primary_skin.value == "PLi-FullNightHD/skin.xml")
-config.misc.check_developimage = ConfigBoolean(default = True)
 
 class StartWizard(WizardLanguage, Rc):
 	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
@@ -77,23 +75,6 @@ class AutoRestoreWizard(MessageBox):
 		else:
 			MessageBox.close(self)
 
-def checkForDevelopImage():
-	if about.getImageTypeString() == 'Openpli develop':
-		return config.misc.check_developimage.value
-	elif not config.misc.check_developimage.value:
-		config.misc.check_developimage.value = True
-		config.misc.check_developimage.save()
-
-class DevelopWizard(MessageBox):
-	def __init__(self, session):
-		MessageBox.__init__(self, session, _("This image is intended for developers and testers.\nNo support will be provided!\nDo you understand this?"), type=MessageBox.TYPE_YESNO, timeout=20, default=False, simple=True)
-
-	def close(self, value):
-		if value:
-			config.misc.check_developimage.value = False
-			config.misc.check_developimage.save()
-		MessageBox.close(self)
-
 class AutoInstallWizard(Screen):
 	skin = """<screen name="AutoInstall" position="fill" flags="wfNoBorder">
 		<panel position="left" size="5%,*"/>
@@ -105,6 +86,7 @@ class AutoInstallWizard(Screen):
 		<eLabel position="top" size="*,2"/>
 		<widget name="AboutScrollLabel" font="Fixed;20" position="fill"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["progress"] = ProgressBar()
@@ -120,8 +102,7 @@ class AutoInstallWizard(Screen):
 		self.package = None
 
 		import glob
-		with open('/sys/class/net/eth0/address', 'r') as fp:
-			mac_address = fp.readline().strip().replace(":", "")
+		mac_address = open('/sys/class/net/eth0/address', 'r').readline().strip().replace(":", "")
 		autoinstallfiles = glob.glob('/media/*/backup/autoinstall%s' % mac_address) + glob.glob('/media/net/*/backup/autoinstall%s' % mac_address)
 		if not autoinstallfiles:
 			autoinstallfiles = glob.glob('/media/*/backup/autoinstall') + glob.glob('/media/net/*/backup/autoinstall')
@@ -129,8 +110,7 @@ class AutoInstallWizard(Screen):
 		for autoinstallfile in autoinstallfiles:
 			if os.path.isfile(autoinstallfile):
 				autoinstalldir = os.path.dirname(autoinstallfile)
-				with open(autoinstallfile) as fp:
-					self.packages = [package.strip() for package in fp.readlines()] + [os.path.join(autoinstalldir, file) for file in os.listdir(autoinstalldir) if file.endswith(".ipk")]
+				self.packages = [package.strip() for package in open(autoinstallfile).readlines()] + [os.path.join(autoinstalldir, file) for file in os.listdir(autoinstalldir) if file.endswith(".ipk")]
 				if self.packages:
 					self.number_of_packages = len(self.packages)
 					# make sure we have a valid package list before attempting to restore packages
@@ -139,10 +119,9 @@ class AutoInstallWizard(Screen):
 		self.abort()
 
 	def run_console(self):
-		self["progress"].setValue(100 * (self.number_of_packages - len(self.packages))/self.number_of_packages)
+		self["progress"].setValue(100 * (self.number_of_packages - len(self.packages)) / self.number_of_packages)
 		try:
-			with open("/proc/progress", "w") as fp:
-				fp.write(str(self["progress"].value))
+			open("/proc/progress", "w").write(str(self["progress"].value))
 		except IOError:
 			pass
 		self.package = self.packages.pop(0)
@@ -164,8 +143,7 @@ class AutoInstallWizard(Screen):
 				self.dataAvail("An error occurred during installing %s - Please try again later\n" % self.package)
 			else:
 				self.dataAvail("An error occurred during opkg update - Please try again later\n")
-		with open('/var/lib/opkg/status') as fp:
-			installed = [line.strip().split(":", 1)[1].strip() for line in fp.readlines() if line.startswith('Package:')]
+		installed = [line.strip().split(":", 1)[1].strip() for line in open('/var/lib/opkg/status').readlines() if line.startswith('Package:')]
 		self.packages = [package for package in self.packages if package not in installed]
 		if self.packages:
 			self.run_console()
@@ -194,7 +172,6 @@ if not os.path.isfile("/etc/installed"):
 
 wizardManager.registerWizard(AutoInstallWizard, os.path.isfile("/etc/.doAutoinstall"), priority=0)
 wizardManager.registerWizard(AutoRestoreWizard, config.misc.languageselected.value and config.misc.firstrun.value and checkForAvailableAutoBackup(), priority=0)
-wizardManager.registerWizard(DevelopWizard, checkForDevelopImage(), priority=0)
 wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority=10)
 if OverscanWizard:
 	wizardManager.registerWizard(OverscanWizard, config.misc.do_overscanwizard.value, priority=30)

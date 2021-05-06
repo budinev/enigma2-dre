@@ -16,13 +16,16 @@ from Tools.StbHardware import getFPVersion
 from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop, eGetEnigmaDebugLvl
 
 from Components.GUIComponent import GUIComponent
-import skin, os
+from skin import applySkinFactor, parameters, parseScale
+
+import os
+
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("About"))
-		hddsplit = skin.parameters.get("AboutHddSplit", 0)
+		hddsplit = parameters.get("AboutHddSplit", 0)
 
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		cpu = about.getCPUInfoString()
@@ -48,15 +51,16 @@ class About(Screen):
 
 		AboutText += _("DVB driver version: ") + about.getDriverInstalledDate() + "\n"
 
-		GStreamerVersion = _("GStreamer version: ") + about.getGStreamerVersionString(cpu).replace("GStreamer","")
+		GStreamerVersion = _("Media player: GStreamer, version ") + about.getGStreamerVersionString().replace("GStreamer", "")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
-		AboutText += GStreamerVersion + "\n"
 
-		FFmpegVersion = about.getFFmpegVersionString()
-		if FFmpegVersion != "":
-			FFmpegVersion = _("FFmpeg version: ") + FFmpegVersion
-			self["FFmpegVersion"] = StaticText(FFmpegVersion)
-			AboutText += FFmpegVersion + "\n"
+		ffmpegVersion = _("Media player: ffmpeg, version ") + about.getffmpegVersionString()
+		self["ffmpegVersion"] = StaticText(ffmpegVersion)
+
+		if cpu.upper().startswith('HI') or os.path.isdir('/proc/hisi'):
+			AboutText += ffmpegVersion + "\n"
+		else:
+			AboutText += GStreamerVersion + "\n"
 
 		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
 
@@ -72,8 +76,6 @@ class About(Screen):
 			AboutText += fp_version + "\n"
 
 		self["FPVersion"] = StaticText(fp_version)
-		
-		AboutText += _("Flash memory free: ") + about.getFlashMemory() + "\n"
 
 		AboutText += _('Skin & Resolution: %s (%sx%s)\n') % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 
@@ -100,7 +102,7 @@ class About(Screen):
 					hddinfo += "\n"
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
-					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free()/1024.0, "G", _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free() / 1024.0, "G", _("free"))
 				else:
 					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free(), "M", _("free"))
 		else:
@@ -140,6 +142,7 @@ class About(Screen):
 	def showTroubleshoot(self):
 		self.session.open(Troubleshoot)
 
+
 class TranslationInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -176,6 +179,7 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
 
 class CommitInfo(Screen):
 	def __init__(self, session):
@@ -261,6 +265,7 @@ class CommitInfo(Screen):
 		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
 		self.updateCommitLogs()
 
+
 class MemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -301,8 +306,7 @@ class MemoryInfo(Screen):
 			mem = 1
 			free = 0
 			rows_in_column = self["params"].rows_in_column
-			fp = open('/proc/meminfo','r')
-			for i, line in enumerate(fp):
+			for i, line in enumerate(open('/proc/meminfo', 'r')):
 				s = line.strip().split(None, 2)
 				if len(s) == 3:
 					name, size, units = s
@@ -316,45 +320,43 @@ class MemoryInfo(Screen):
 				if name.startswith("MemFree") or name.startswith("Buffers") or name.startswith("Cached"):
 					free += int(size)
 				if i < rows_in_column:
-					ltext += "".join((name,"\n"))
-					lvalue += "".join((size," ",units,"\n"))
+					ltext += "".join((name, "\n"))
+					lvalue += "".join((size, " ", units, "\n"))
 				else:
-					rtext += "".join((name,"\n"))
-					rvalue += "".join((size," ",units,"\n"))
+					rtext += "".join((name, "\n"))
+					rvalue += "".join((size, " ", units, "\n"))
 			self['lmemtext'].setText(ltext)
 			self['lmemvalue'].setText(lvalue)
 			self['rmemtext'].setText(rtext)
 			self['rmemvalue'].setText(rvalue)
-			self["slide"].setValue(int(100.0*(mem-free)/mem+0.25))
-			self['pfree'].setText("%.1f %s" % (100.*free/mem,'%'))
-			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
+			self["slide"].setValue(int(100.0 * (mem - free) / mem + 0.25))
+			self['pfree'].setText("%.1f %s" % (100. * free / mem, '%'))
+			self['pused'].setText("%.1f %s" % (100. * (mem - free) / mem, '%'))
 		except Exception, e:
 			print "[About] getMemoryInfo FAIL:", e
-		finally:
-			fp.close()
 
 	def clearMemory(self):
 		eConsoleAppContainer().execute("sync")
-		f = open("/proc/sys/vm/drop_caches", "w")
-		f.write("3")
-		f.close()
+		open("/proc/sys/vm/drop_caches", "w").write("3")
 		self.getMemoryInfo()
+
 
 class MemoryInfoSkinParams(GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
-		self.rows_in_column = 25
+		self.rows_in_column = applySkinFactor(25)
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "rowsincolumn":
-					self.rows_in_column = int(value)
+					self.rows_in_column = parseScale(value)
 			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	GUI_WIDGET = eLabel
+
 
 class Troubleshoot(Screen):
 	def __init__(self, session):
@@ -432,8 +434,7 @@ class Troubleshoot(Screen):
 		command = self.commands[self.commandIndex]
 		if command.startswith("cat "):
 			try:
-				with open(command[4:], "r") as fp:
-					self["AboutScrollLabel"].setText(fp.read())
+				self["AboutScrollLabel"].setText(open(command[4:], "r").read())
 			except:
 				self["AboutScrollLabel"].setText(_("Logfile does not exist anymore"))
 		else:
