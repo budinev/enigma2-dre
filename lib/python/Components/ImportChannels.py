@@ -5,6 +5,7 @@ from Screens.MessageBox import MessageBox
 from config import config, ConfigText
 from Tools import Notifications
 from base64 import encodestring
+from urllib import quote
 import xml.etree.ElementTree as et
 
 settingfiles = ('lamedb', 'bouquets.', 'userbouquet.', 'blacklist', 'whitelist', 'alternatives.')
@@ -80,8 +81,7 @@ class ImportChannels():
 			if epg_location:
 				print "[Import Channels] Copy EPG file..."
 				try:
-					with open(os.path.join(self.tmp_dir, "epg.dat"), "wb") as fp:
-						fp.write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)).read())
+					open(os.path.join(self.tmp_dir, "epg.dat"), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)).read())
 					shutil.move(os.path.join(self.tmp_dir, "epg.dat"), config.misc.epgcache_filename.value)
 				except:
 					self.ImportChannelsDone(False, _("Error while retreiving epg.dat from server"))
@@ -96,9 +96,9 @@ class ImportChannels():
 					file = file.encode("UTF-8")
 					print "[Import Channels] Downloading %s" % file
 					try:
-						with open(os.path.join(self.tmp_dir, os.path.basename(file)), "wb") as fp:
-							fp.write(self.getUrl("%s/file?file=%s" % (self.url, file)).read())
-					except:
+						open(os.path.join(self.tmp_dir, os.path.basename(file)), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, quote(file))).read())
+					except Exception, e:
+						print "[Import Channels] Exception: %s" % str(e)
 						self.ImportChannelsDone(False, _("ERROR downloading file %s") % file)
 						return
 			except:
