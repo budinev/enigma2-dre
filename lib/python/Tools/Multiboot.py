@@ -1,9 +1,13 @@
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
-import os, glob, tempfile
+import os
+import glob
+import tempfile
+
 
 class tmp:
 	dir = None
+
 
 def getMultibootStartupDevice():
 	tmp.dir = tempfile.mkdtemp(prefix="Multiboot")
@@ -17,8 +21,10 @@ def getMultibootStartupDevice():
 	if not os.path.ismount(tmp.dir):
 		os.rmdir(tmp.dir)
 
+
 def getparam(line, param):
 	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
+
 
 def getMultibootslots():
 	bootslots = {}
@@ -49,10 +55,11 @@ def getMultibootslots():
 			os.rmdir(tmp.dir)
 		if not mode12found and SystemInfo["canMode12"]:
 			#the boot device has ancient content and does not contain the correct STARTUP files
-			for slot in range(1,5):
-				bootslots[slot] = { 'device': '/dev/mmcblk0p%s' % (slot * 2 + 1), 'startupfile': None}
+			for slot in range(1, 5):
+				bootslots[slot] = {'device': '/dev/mmcblk0p%s' % (slot * 2 + 1), 'startupfile': None}
 	print '[Multiboot] Bootslots found:', bootslots
 	return bootslots
+
 
 def getCurrentImage():
 	if SystemInfo["canMultiBoot"]:
@@ -81,6 +88,7 @@ def deleteImage(slot):
 	if not os.path.ismount(tmp.dir):
 		os.rmdir(tmp.dir)
 
+
 def restoreImages():
 	for slot in SystemInfo["canMultiBoot"]:
 		tmp.dir = tempfile.mkdtemp(prefix="Multiboot")
@@ -91,6 +99,7 @@ def restoreImages():
 		Console().ePopen('umount %s' % tmp.dir)
 		if not os.path.ismount(tmp.dir):
 			os.rmdir(tmp.dir)
+
 
 def getImagelist():
 	imagelist = {}
@@ -111,9 +120,9 @@ def getImagelist():
 				with open(os.path.join(imagedir, "etc/issue")) as fp:
 					imagelist[slot] = { 'imagename': "%s (%s)" % (fp.readlines()[-2].capitalize().strip()[:-6], date) }
 			elif os.path.isfile(os.path.join(imagedir, 'usr/bin/enigma2.bak')):
-				imagelist[slot] = { 'imagename': _("Deleted image") }
+				imagelist[slot] = {'imagename': _("Deleted image")}
 			else:
-				imagelist[slot] = { 'imagename': _("Empty slot") }
+				imagelist[slot] = {'imagename': _("Empty slot")}
 			Console().ePopen('umount %s' % tmp.dir)
 		if not os.path.ismount(tmp.dir):
 			os.rmdir(tmp.dir)
