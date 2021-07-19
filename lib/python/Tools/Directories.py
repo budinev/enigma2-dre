@@ -72,6 +72,7 @@ defaultPaths = {
 	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE)
 }
 
+
 def resolveFilename(scope, base="", path_prefix=None):
 	# You can only use the ~/ if we have a prefix directory.
 	if base.startswith("~/"):
@@ -220,6 +221,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		path = "%s:%s" % (path, suffix)
 	return path
 
+
 def comparePath(leftPath, rightPath):
 	if leftPath.endswith(os.sep):
 		leftPath = leftPath[:-1]
@@ -231,6 +233,7 @@ def comparePath(leftPath, rightPath):
 		if left[segment] != right[segment]:
 			return False
 	return True
+
 
 def bestRecordingLocation(candidates):
 	path = ""
@@ -248,6 +251,7 @@ def bestRecordingLocation(candidates):
 		except (IOError, OSError) as err:
 			print "[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (err.errno, candidate[1], err.strerror)
 	return path
+
 
 def defaultRecordingLocation(candidate=None):
 	if candidate and pathExists(candidate):
@@ -275,6 +279,7 @@ def defaultRecordingLocation(candidate=None):
 			path += "/"  # Bad habits die hard, old code relies on this.
 	return path
 
+
 def createDir(path, makeParents=False):
 	try:
 		if makeParents:
@@ -285,12 +290,14 @@ def createDir(path, makeParents=False):
 	except OSError:
 		return 0
 
+
 def removeDir(path):
 	try:
 		os.rmdir(path)
 		return 1
 	except OSError:
 		return 0
+
 
 def fileExists(f, mode="r"):
 	if mode == "r":
@@ -301,8 +308,10 @@ def fileExists(f, mode="r"):
 		acc_mode = os.F_OK
 	return os.access(f, acc_mode)
 
+
 def fileCheck(f, mode="r"):
 	return fileExists(f, mode) and f
+
 
 def fileHas(f, content, mode="r"):
 	result = False
@@ -313,6 +322,7 @@ def fileHas(f, content, mode="r"):
 		if content in text:
 			result = True
 	return result
+
 
 def getRecordingFilename(basename, dirname=None):
 	# Filter out non-allowed characters.
@@ -344,6 +354,8 @@ def getRecordingFilename(basename, dirname=None):
 
 # This is clearly a hack:
 #
+
+
 def InitFallbackFiles():
 	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.tv")
 	resolveFilename(SCOPE_CONFIG, "bouquets.tv")
@@ -353,6 +365,8 @@ def InitFallbackFiles():
 # Returns a list of tuples containing pathname and filename matching the given pattern
 # Example-pattern: match all txt-files: ".*\.txt$"
 #
+
+
 def crawlDirectory(directory, pattern):
 	list = []
 	if directory:
@@ -362,6 +376,7 @@ def crawlDirectory(directory, pattern):
 				if expression.match(file) is not None:
 					list.append((root, file))
 	return list
+
 
 def copyfile(src, dst):
 	f1 = None
@@ -397,6 +412,7 @@ def copyfile(src, dst):
 	except (IOError, OSError) as err:
 		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 	return status
+
 
 def copytree(src, dst, symlinks=False):
 	names = os.listdir(src)
@@ -435,6 +451,8 @@ def copytree(src, dst, symlinks=False):
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
 #
+
+
 def moveFiles(fileList):
 	errorFlag = False
 	movedList = []
@@ -461,6 +479,7 @@ def moveFiles(fileList):
 				print "[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (err.errno, item[1], item[0], err.strerror)
 				print "[Directories] Failed to undo move:", item
 
+
 def getSize(path, pattern=".*"):
 	path_size = 0
 	if os.path.isdir(path):
@@ -471,6 +490,7 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
+
 
 def lsof():
 	lsof = []
@@ -485,9 +505,11 @@ def lsof():
 				pass
 	return lsof
 
+
 def getExtension(file):
 	filename, extension = os.path.splitext(file)
 	return extension
+
 
 def mediafilesInUse(session):
 	from Components.MovieList import KNOWN_EXTENSIONS
@@ -505,5 +527,7 @@ def mediafilesInUse(session):
 # contain spaces or other special characters.  This method adjusts the
 # filename to be a safe and single entity for passing to a shell.
 #
+
+
 def shellquote(s):
 	return "'%s'" % s.replace("'", "'\\''")

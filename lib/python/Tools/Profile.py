@@ -1,7 +1,6 @@
 # the implementation here is a bit crappy.
 import time
 from Directories import resolveFilename, SCOPE_CONFIG
-from Tools.Directories import fileExists
 
 PERCENTAGE_START = 0
 PERCENTAGE_END = 100
@@ -12,24 +11,23 @@ profile_data = {}
 total_time = 1
 profile_file = None
 
-if fileExists(resolveFilename(SCOPE_CONFIG, "profile")):
-	try:
-		f = open(resolveFilename(SCOPE_CONFIG, "profile"), "r")
-		profile_old = f.readlines()
-		f.close()
-		t = None
-		for line in profile_old:
-			(t, id) = line[:-1].split('\t')
-			t = float(t)
-			total_time = t
-			profile_data[id] = t
-	except:
-		print "no profile data available"
+try:
+	profile_old = open(resolveFilename(SCOPE_CONFIG, "profile"), "r").readlines()
+
+	t = None
+	for line in profile_old:
+		(t, id) = line[:-1].split('\t')
+		t = float(t)
+		total_time = t
+		profile_data[id] = t
+except:
+	print "no profile data available"
 
 try:
 	profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
 except IOError:
 	print "WARNING: couldn't open profile file!"
+
 
 def profile(id):
 	now = time.time() - profile_start
@@ -43,11 +41,10 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				f = open("/proc/progress", "w")
-				f.write("%d \n" % perc)
-				f.close()
+				open("/proc/progress", "w").write("%d \n" % perc)
 			except IOError:
 				pass
+
 
 def profile_final():
 	global profile_file
