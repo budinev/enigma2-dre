@@ -4,6 +4,7 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
 from Tools.LoadPixmap import LoadPixmap
 from skin import applySkinFactor, fonts, parameters
 
+
 def SelectionEntryComponent(description, value, index, selected):
 	dx, dy, dw, dh = parameters.get("SelectionListDescr", applySkinFactor(25, 3, 650, 30))
 	res = [
@@ -17,6 +18,7 @@ def SelectionEntryComponent(description, value, index, selected):
 	ix, iy, iw, ih = parameters.get("SelectionListLock", applySkinFactor(0, 2, 25, 24))
 	res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectionpng))
 	return res
+
 
 class SelectionList(MenuList):
 	def __init__(self, list=None, enableWrapAround=False):
@@ -40,7 +42,7 @@ class SelectionList(MenuList):
 		return [(item[0][0], item[0][1], item[0][2]) for item in self.list if item[0][3]]
 
 	def toggleAllSelection(self):
-		for idx,item in enumerate(self.list):
+		for idx, item in enumerate(self.list):
 			item = self.list[idx][0]
 			self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
 		self.setList(self.list)

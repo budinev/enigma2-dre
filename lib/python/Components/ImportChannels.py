@@ -1,4 +1,8 @@
-import threading, urllib2, os, shutil, tempfile
+import threading
+import urllib2
+import os
+import shutil
+import tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox
@@ -9,6 +13,7 @@ from urllib import quote
 import xml.etree.ElementTree as et
 
 settingfiles = ('lamedb', 'bouquets.', 'userbouquet.', 'blacklist', 'whitelist', 'alternatives.')
+
 
 class ImportChannels():
 
