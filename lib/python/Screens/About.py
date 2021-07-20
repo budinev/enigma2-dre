@@ -306,25 +306,26 @@ class MemoryInfo(Screen):
 			mem = 1
 			free = 0
 			rows_in_column = self["params"].rows_in_column
-			for i, line in enumerate(open('/proc/meminfo', 'r')):
-				s = line.strip().split(None, 2)
-				if len(s) == 3:
-					name, size, units = s
-				elif len(s) == 2:
-					name, size = s
-					units = ""
-				else:
-					continue
-				if name.startswith("MemTotal"):
-					mem = int(size)
-				if name.startswith("MemFree") or name.startswith("Buffers") or name.startswith("Cached"):
-					free += int(size)
-				if i < rows_in_column:
-					ltext += "".join((name, "\n"))
-					lvalue += "".join((size, " ", units, "\n"))
-				else:
-					rtext += "".join((name, "\n"))
-					rvalue += "".join((size, " ", units, "\n"))
+			with open('/proc/meminfo', 'r') as fp:
+				for i, line in enumerate(fp):
+					s = line.strip().split(None, 2)
+					if len(s) == 3:
+						name, size, units = s
+					elif len(s) == 2:
+						name, size = s
+						units = ""
+					else:
+						continue
+					if name.startswith("MemTotal"):
+						mem = int(size)
+					if name.startswith("MemFree") or name.startswith("Buffers") or name.startswith("Cached"):
+						free += int(size)
+					if i < rows_in_column:
+						ltext += "".join((name, "\n"))
+						lvalue += "".join((size, " ", units, "\n"))
+					else:
+						rtext += "".join((name, "\n"))
+						rvalue += "".join((size, " ", units, "\n"))
 			self['lmemtext'].setText(ltext)
 			self['lmemvalue'].setText(lvalue)
 			self['rmemtext'].setText(rtext)
@@ -337,7 +338,8 @@ class MemoryInfo(Screen):
 
 	def clearMemory(self):
 		eConsoleAppContainer().execute("sync")
-		open("/proc/sys/vm/drop_caches", "w").write("3")
+		with open("/proc/sys/vm/drop_caches", "w") as fp:
+			fp.write("3")
 		self.getMemoryInfo()
 
 
@@ -434,7 +436,8 @@ class Troubleshoot(Screen):
 		command = self.commands[self.commandIndex]
 		if command.startswith("cat "):
 			try:
-				self["AboutScrollLabel"].setText(open(command[4:], "r").read())
+				with open(command[4:], "r") as fp:
+					self["AboutScrollLabel"].setText(fp.read())
 			except:
 				self["AboutScrollLabel"].setText(_("Logfile does not exist anymore"))
 		else:
