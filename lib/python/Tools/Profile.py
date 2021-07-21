@@ -12,7 +12,8 @@ total_time = 1
 profile_file = None
 
 try:
-	profile_old = open(resolveFilename(SCOPE_CONFIG, "profile"), "r").readlines()
+	with open(resolveFilename(SCOPE_CONFIG, "profile"), "r") as fp:
+		profile_old = fp.readlines()
 
 	t = None
 	for line in profile_old:
@@ -41,7 +42,8 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				open("/proc/progress", "w").write("%d \n" % perc)
+				with open("/proc/progress", "w") as fp:
+					fp.write("%d \n" % perc)
 			except IOError:
 				pass
 
