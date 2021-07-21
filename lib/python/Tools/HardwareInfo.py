@@ -36,7 +36,8 @@ class HardwareInfo:
 
 		# Brandname ... bit odd, but history prevails
 		try:
-			self.device_brandname = open("/proc/stb/info/brandname").read().strip()
+			with open("/proc/stb/info/brandname") as fp:
+				self.device_brandname = fp.read().strip()
 		except:
 			pass
 
