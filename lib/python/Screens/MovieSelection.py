@@ -1234,7 +1234,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if config.movielist.settings_per_directory.value:
 			try:
 				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-				pickle.dump(self.settings, open(path, "wb"))
+				with open(path, "wb") as fp:
+					pickle.dump(self.settings, fp)
 			except Exception, e:
 				print "Failed to save settings to %s: %s" % (path, e)
 		# Also set config items, in case the user has a read-only disk
@@ -1251,7 +1252,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if config.movielist.settings_per_directory.value:
 			try:
 				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-				updates = pickle.load(open(path, "rb"))
+				with open(path, "rb") as fp:
+					updates = pickle.load(fp)
 				self.applyConfigSettings(updates)
 			except IOError, e:
 				updates = {
