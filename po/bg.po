@@ -5669,8 +5669,8 @@ msgid "Not defined"
 msgstr "Не определен"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Няма достатъчно място на диска. Моля освободете място на диска и опитайте отново. (%d MB трябват, %d MB налични)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Няма достатъчно място на диска. Моля освободете място на диска и опитайте отново. (%(req)d MB трябват, %(avail)d MB налични)"
 
 msgid "Not tested:"
 msgstr "Не е тестван:"
@@ -9590,11 +9590,11 @@ msgstr "Решение на проблем"
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Опит за откриване на валидни транспондери в кабелната мрежа... моля изчакайте..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Опит за откриване на валидни транспондери в кабелната мрежа. Моля изчакайте..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Опит за откриване на валидни транспондери в наземната мрежа... моля изчакайте..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Опит за откриване на валидни транспондери в наземната мрежа. Моля изчакайте..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Опит за изтегляне на нов списък с пакети. Моля изчакайте..."

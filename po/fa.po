@@ -5847,8 +5847,8 @@ msgid "Not defined"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت نیاز است و %d مگابایت در دسترس است)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%(req)d مگابایت نیاز است و %(avail)d مگابایت در دسترس است)"
 
 msgid "Not tested:"
 msgstr ""
@@ -9903,10 +9903,10 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
+msgid "Looking for active transponders in the cable network. Please wait..."
 msgstr ""
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."

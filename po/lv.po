@@ -5682,8 +5682,8 @@ msgid "Not defined"
 msgstr "Nav definēts"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Nav pietiekami vietas uz diska. Lūdzu atbrīvot vietu uz diska un mēģināt vēlreiz. (%d MB ir nepieciešami, bet %d MB pieejami)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Nav pietiekami vietas uz diska. Lūdzu atbrīvot vietu uz diska un mēģināt vēlreiz. (%(req)d MB ir nepieciešami, bet %(avail)d MB pieejami)"
 
 msgid "Not tested:"
 msgstr "Nav pārbaudīts:"
@@ -9611,11 +9611,11 @@ msgstr "Informācija"
 msgid "True"
 msgstr "Jā"
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Mēģina atrast izmantojamus transponderus kabeļu tīklā... lūdzu gaidiet..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Mēģina atrast izmantojamus transponderus kabeļu tīklā. Lūdzu gaidiet..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Mēģina atrast izmantojamus transponderus... lūdzu gaidiet..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Mēģina atrast izmantojamus transponderus. Lūdzu gaidiet..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Mēģina lejuplādēt jaunu pakotņu sarakstu. Lūdzu gaidiet..."

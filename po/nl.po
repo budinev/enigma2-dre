@@ -5869,8 +5869,8 @@ msgid "Not defined"
 msgstr "Niet vestgelegd"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB noodzakelijk, %d MB beschikbaar)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%(req)d MB noodzakelijk, %(avail)d MB beschikbaar)"
 
 msgid "Not tested:"
 msgstr "Niet getest:"
@@ -9868,11 +9868,11 @@ msgstr "Foutzoeken"
 msgid "True"
 msgstr "Waar"
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Er wordt geprobeerd gebruikte transponders op het kabelnetwerk te vinden… Een ogenblik aub..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Er wordt geprobeerd gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik aub..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Er wordt geprobeerd gebruikte transponders te zoeken op het DVB-T netwerk... Een ogenblik aub..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Er wordt geprobeerd gebruikte transponders te zoeken op het DVB-T netwerk. Een ogenblik aub..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Er wordt geprobeerd een nieuwe pakketlijst te downloaden… Een ogenblik aub..."

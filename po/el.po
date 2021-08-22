@@ -5661,8 +5661,8 @@ msgid "Not defined"
 msgstr "Απροσδιόριστο"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Μη επαρκής χώρος δίσκου. Ελευθερώστε χώρο και προσπαθήστε ξανά. (%d MB απαιτούνται, %d MB διαθέσιμα)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Μη επαρκής χώρος δίσκου. Ελευθερώστε χώρο και προσπαθήστε ξανά. (%(req)d MB απαιτούνται, %(avail)d MB διαθέσιμα)"
 
 msgid "Not tested:"
 msgstr "Μη ελεγμένα:"
@@ -9589,11 +9589,11 @@ msgstr "Αντιμετώπιση προβλημάτων"
 msgid "True"
 msgstr "Αληθές"
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Αναζήτηση ενεργών αναμεταδοτών στο καλωδιακό δίκτυο... Παρακαλώ περιμένετε..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Αναζήτηση ενεργών αναμεταδοτών στο καλωδιακό δίκτυο. Παρακαλώ περιμένετε..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Προσπάθεια εύρεσης ενεργών αναμεταδοτών στο επίγειο δίκτυο... Παρακαλώ περιμένετε..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Αναζήτηση ενεργών αναμεταδοτών στο επίγειο δίκτυο. Παρακαλώ περιμένετε..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Λήψη νέας λίστας πακέτων. Παρακαλώ περιμένετε..."

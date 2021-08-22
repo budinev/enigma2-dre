@@ -6322,8 +6322,8 @@ msgid "Not defined"
 msgstr "No definit"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "No hi ha prou espai al disc. Allibereu espai per al disc i torneu-ho a provar. (% d MB obligatori,% d MB disponible)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "No hi ha prou espai al disc. Allibereu espai per al disc i torneu-ho a provar. (%(req)d MB obligatori, %(avail)d MB disponible)"
 
 msgid "Not tested:"
 msgstr "No provat:"
@@ -10729,11 +10729,11 @@ msgid "True"
 msgstr "És cert"
 
 #
-msgid "Try to find used transponders in cable network.. please wait..."
+msgid "Looking for active transponders in the cable network. Please wait..."
 msgstr "Proveu de trobar els transpondedors usats a la xarxa de cable. Espereu …"
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Proveu de trobar transpondedors usats a la xarxa terrestre … espereu …"
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Proveu de trobar transpondedors usats a la xarxa terrestre. Espereu …"
 
 #
 msgid "Trying to download a new packetlist. Please wait..."

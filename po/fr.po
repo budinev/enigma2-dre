@@ -5663,8 +5663,8 @@ msgid "Not defined"
 msgstr "Pas défini"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Espace disque insuffisant. Veuillez libérer de l'espace disque et réessayer. (%d MB requis, %d MB disponible)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Espace disque insuffisant. Veuillez libérer de l'espace disque et réessayer. (%(req)d MB requis, %(avail)d MB disponible)"
 
 msgid "Not tested:"
 msgstr "Pas testé:"
@@ -9598,11 +9598,11 @@ msgstr "Diagnostiquer"
 msgid "True"
 msgstr "Vrai"
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Recherche des transpondeurs utilisés sur réseau câblé… Veuillez patienter..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Recherche des transpondeurs utilisés sur réseau câblé. Veuillez patienter..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Recherche des transpondeurs utilisés sur réseau terrestre… Veuillez patienter..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Recherche des transpondeurs utilisés sur réseau terrestre. Veuillez patienter..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Essai téléchargement nouvelle liste paquet. Veuillez patienter..."

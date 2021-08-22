@@ -6635,8 +6635,8 @@ msgstr ""
 
 #
 #, fuzzy, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Nedovoljno prostora na disku. Molimo oslobodite nešto prostora i probajte ponovo. (%d MB potrebno,%d MB omogućeno)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Nedovoljno prostora na disku. Molimo oslobodite nešto prostora i probajte ponovo. (%(req)d MB potrebno, %(avail)d MB omogućeno)"
 
 msgid "Not tested:"
 msgstr ""
@@ -11295,15 +11295,15 @@ msgid "True"
 msgstr ""
 
 #
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Pokušavam pronaći korišćene transpondere u kablovskoj mreži.. molim pričekajte..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Pokušavam pronaći korišćene transpondere u kablovskoj mreži. Molim pričekajte..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
 msgstr ""
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr "Pokušavam skinuti novu listu paketa.Molim sačekajte..."
+msgstr "Pokušavam skinuti novu listu paketa. Molim sačekajte..."
 
 #
 msgid "Tue"

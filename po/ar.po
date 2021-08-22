@@ -6072,8 +6072,8 @@ msgid "Not defined"
 msgstr "غير معرف"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "مساحة غير كافيه في القرص الصلب. الرجاء تحرير بعض المساحة على القرص وحاول مرة أخرى. (%d مطلوب بالميقابايت, %d ميقابايت متوفرة)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "مساحة غير كافيه في القرص الصلب. الرجاء تحرير بعض المساحة على القرص وحاول مرة أخرى. (%(req)d مطلوب بالميقابايت, %(avail)d ميقابايت متوفرة)"
 
 #, fuzzy
 msgid "Not tested:"
@@ -10296,11 +10296,11 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "إعادة محاولة إيجاد ترددات تعمل فى كيبل الشبكة.. الرجاء الانتظار..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "إعادة محاولة إيجاد ترددات تعمل فى كيبل الشبكة .الرجاء الانتظار..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "إعادة محاولة لا يجاد الترددات المستخدمة في الشبكة الأرضية ... الرجاء الانتظار ..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "إعادة محاولة لا يجاد الترددات المستخدمة في الشبكة الأرضي .الرجاء الانتظار..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "إعادة محاولة تحميل قائمة حزم جديدة. الرجاء الانتظار ..."

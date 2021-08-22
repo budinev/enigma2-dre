@@ -5716,8 +5716,8 @@ msgid "Not defined"
 msgstr "Määramata"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Kõvakettal pole piisavalt ruumi. Kustuta ebavajalik ja proovi uuesti. (%d MB vaja, %d MB saadaval)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Kõvakettal pole piisavalt ruumi. Kustuta ebavajalik ja proovi uuesti. (%(req)d MB vaja, %(avail)d MB saadaval)"
 
 msgid "Not tested:"
 msgstr "Pole testitud:"
@@ -9723,11 +9723,11 @@ msgstr "Tõrkeotsing"
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
+msgid "Looking for active transponders in the cable network. Please wait..."
 msgstr "Otsin kaabelvõrgu sagedusi. Oota."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Otsime maapealses võrgus kasutatud transpondereid... Palun oota."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Otsime maapealses võrgus kasutatud transpondereid. Palun oota."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Üritan laadida alla uut nimekirja. Oota."

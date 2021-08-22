@@ -5851,8 +5851,8 @@ msgid "Not defined"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Nu este spatiu suficient. Va rugam eliberati din spatiu si incercati din nou. (%d MB necesari, %d MB disponibili)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Nu este spatiu suficient. Va rugam eliberati din spatiu si incercati din nou. (%(req)d MB necesari, %(avail)d MB disponibili)"
 
 msgid "Not tested:"
 msgstr ""
@@ -9935,10 +9935,10 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Cautare transpondere folosite in reteaua de cablu...va rugam asteptati..."
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Cautare transpondere folosite in reteaua de cablu. Va rugam asteptati..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
