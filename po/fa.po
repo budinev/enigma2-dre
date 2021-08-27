@@ -351,7 +351,7 @@ msgid_plural "%s updated packages available"
 msgstr[0] "به روز رسانی های در دسترس"
 
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
+msgid "Autoinstalling %s"
 msgstr "در حال نصب"
 
 #, python-format
@@ -2887,7 +2887,7 @@ msgid "Directory browser"
 msgstr "مرورگر شاخه"
 
 #, fuzzy, python-format
-msgid "Directory contains %s and %s."
+msgid "Directory contains %(file)s and %(subdir)s."
 msgstr "پوشه %s وجود ندارد"
 
 msgid "Disable"

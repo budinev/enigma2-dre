@@ -374,8 +374,8 @@ msgstr[0] "%s pembaruan paket tersedia"
 msgstr[1] "%s pembaruan paket-paket tersedia"
 
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% pemasangan otomatis %s"
+msgid "Autoinstalling %s"
+msgstr "Pemasangan otomatis %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2892,8 +2892,8 @@ msgid "Directory browser"
 msgstr "Perambah direktori"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Direktori berisi %s dan %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Direktori berisi %(file)s dan %(subdir)s."
 
 msgid "Disable"
 msgstr "Matikan"

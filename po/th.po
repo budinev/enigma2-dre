@@ -365,7 +365,7 @@ msgstr[0] " มีรายการปรับปรุง"
 msgstr[1] " มีรายการปรับปรุง"
 
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
+msgid "Autoinstalling %s"
 msgstr "กำลังติดตั้ง"
 
 #, python-format
@@ -2899,7 +2899,7 @@ msgid "Directory browser"
 msgstr "ดูโฟล์เดอร์"
 
 #, fuzzy, python-format
-msgid "Directory contains %s and %s."
+msgid "Directory contains %(file)s and %(subdir)s."
 msgstr "ไม่พบโฟล์เดอร์ %s ในระบบ"
 
 msgid "Disable"

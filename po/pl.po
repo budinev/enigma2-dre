@@ -382,8 +382,8 @@ msgstr[1] "%s zaktualizowane pakiety dostępne"
 msgstr[2] "%s zaktualizowanych pakietów dostępnych"
 
 #, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% Automatyczna instalacja %s"
+msgid "Autoinstalling %s"
+msgstr "Automatyczna instalacja %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2822,8 +2822,8 @@ msgid "Directory browser"
 msgstr "Przeglądarka katalogów"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Katalog zawiera %s i %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Katalog zawiera %(file)s i %(subdir)s."
 
 msgid "Disable"
 msgstr "Wyłącz"

@@ -357,8 +357,8 @@ msgid_plural "%s updated packages available"
 msgstr[0] "%s gói cập nhật có sẵn"
 
 #, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% Tự động cài đặt %s"
+msgid "Autoinstalling %s"
+msgstr "Tự động cài đặt %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2793,8 +2793,8 @@ msgid "Directory browser"
 msgstr "Trình duyệt thư mục"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Thư mục chứa%s và%s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Thư mục chứa %(file)s và %(subdir)s."
 
 msgid "Disable"
 msgstr "Vô hiệu hóa"

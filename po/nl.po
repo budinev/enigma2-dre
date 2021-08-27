@@ -369,8 +369,8 @@ msgstr[0] "%s nieuw pakket beschikbaar"
 msgstr[1] "%s nieuwe pakketten beschikbaar"
 
 #, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% (Auto)Installeert %s"
+msgid "Autoinstalling %s"
+msgstr "(Auto)Installeert %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2985,8 +2985,8 @@ msgid "Directory browser"
 msgstr "Bestandsverkenner"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Directory bevat %s en %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Directory bevat %(file)s en %(subdir)s."
 
 msgid "Disable"
 msgstr "Uit"

@@ -364,7 +364,7 @@ msgstr[0] "%s atualização disponível"
 msgstr[1] "%s atualizações disponíveis"
 
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
+msgid "Autoinstalling %s"
 msgstr "Instalando..."
 
 #, python-format
@@ -2838,8 +2838,8 @@ msgid "Directory browser"
 msgstr "Navegador de arquivos"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "O diretório contém %s e %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "O diretório contém %(file)s e %(subdir)s."
 
 msgid "Disable"
 msgstr "Desativar"

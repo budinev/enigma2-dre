@@ -381,8 +381,8 @@ msgstr[1] "%s оновлення пакетів доступно"
 msgstr[2] "%s оновлень пакетів доступно"
 
 #, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% Автовстановлення %s"
+msgid "Autoinstalling %s"
+msgstr "Автовстановлення %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2821,8 +2821,8 @@ msgid "Directory browser"
 msgstr "Провідник каталогів"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Директорія містить %s і %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Директорія містить %(file)s і %(subdir)s."
 
 msgid "Disable"
 msgstr "Вимкнуто"

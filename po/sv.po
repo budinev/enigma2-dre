@@ -379,7 +379,7 @@ msgstr[1] "%s uppdateringar tillgängliga."
 
 #
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
+msgid "Autoinstalling %s"
 msgstr "Installerar"
 
 #, python-format
@@ -3179,8 +3179,8 @@ msgid "Directory browser"
 msgstr "Biblioteksbläddrare"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Katalogen innehåller %s och %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Katalogen innehåller %(file)s och %(subdir)s."
 
 #
 msgid "Disable"

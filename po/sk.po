@@ -382,8 +382,8 @@ msgstr[1] "%s aktualizované balíčky k dispozícii"
 msgstr[2] "%s aktualizovaných balíčkov k dispozícii"
 
 #, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% Autoinštalácia %s"
+msgid "Autoinstalling %s"
+msgstr "Autoinštalácia %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2821,8 +2821,8 @@ msgid "Directory browser"
 msgstr "Prehliadač adresárov"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Adresár obsahuje %s a %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Adresár obsahuje %(file)s a %(subdir)s."
 
 msgid "Disable"
 msgstr "Zakázať"

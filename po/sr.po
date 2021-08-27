@@ -398,7 +398,7 @@ msgstr[2] "ažuriranja dostupna."
 
 #
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
+msgid "Autoinstalling %s"
 msgstr "Instaliram"
 
 #, python-format
@@ -3263,7 +3263,7 @@ msgstr "Pretraživač direktorijuma"
 
 #
 #, fuzzy, python-format
-msgid "Directory contains %s and %s."
+msgid "Directory contains %(file)s and %(subdir)s."
 msgstr "Direktorijum %s ne postoji"
 
 #

@@ -385,8 +385,8 @@ msgstr[1] "%s pakotņu atjauninājumi pieejami"
 msgstr[2] "%s pakotņu atjauninājumi pieejami"
 
 #, python-format
-msgid "%s%% Autoinstalling %s"
-msgstr "%s%% Uzstāda %s"
+msgid "Autoinstalling %s"
+msgstr "Uzstāda %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2825,8 +2825,8 @@ msgid "Directory browser"
 msgstr "Mapju pārlūks"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Mape satur %s un %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Mape satur %(file)s un %(subdir)s."
 
 msgid "Disable"
 msgstr "Izslēgt"

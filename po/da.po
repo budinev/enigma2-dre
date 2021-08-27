@@ -384,7 +384,7 @@ msgstr[1] "%s  opdateringer tilgængelige"
 
 #
 #, fuzzy, python-format
-msgid "%s%% Autoinstalling %s"
+msgid "Autoinstalling %s"
 msgstr "Installerer"
 
 #, python-format
@@ -3187,8 +3187,8 @@ msgid "Directory browser"
 msgstr "Mappe gennemsyn"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr "Mappen indeholder %s og %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Mappen indeholder %(file)s og %(subdir)s."
 
 #
 msgid "Disable"
