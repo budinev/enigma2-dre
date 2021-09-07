@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from Tools.Profile import profile
 
 from Screen import Screen
@@ -390,6 +391,8 @@ class ChannelContextMenu(Screen):
 		if answer:
 			if answer == "never":
 				self.csel.confirmRemove = False
+			if self.csel.movemode:
+				self.csel.toggleMoveMode()
 			self.csel.removeBouquet()
 			eDVBDB.getInstance().reloadBouquets()
 			self.close()
