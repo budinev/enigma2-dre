@@ -2948,7 +2948,7 @@ msgid "Detect next boxes before standby"
 msgstr "Detectar as seguintes caixas antes do repouso"
 
 #
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "HDD detectado:"
 
 #
@@ -10535,8 +10535,8 @@ msgid "Top and bottom"
 msgstr "Parte superior e inferior"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Total de clientes emitindo:%d (%s)"
+msgid "Total clients streaming: "
+msgstr "Total de clientes emitindo: "
 
 #
 msgid "Track"

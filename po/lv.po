@@ -2661,7 +2661,7 @@ msgstr "Spraudņu papildinformācija: "
 msgid "Detect next boxes before standby"
 msgstr "Noteikt citas iekārtas pirms gaidstāves"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Atmiņas iekārtas:"
 
 msgid "Detected NIMs:"
@@ -9432,8 +9432,8 @@ msgid "Top and bottom"
 msgstr "Vertikāli"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Straumē: %d (%s) klienti"
+msgid "Total clients streaming: "
+msgstr "Straumē klienti: "
 
 msgid "Track"
 msgstr "Celiņš"

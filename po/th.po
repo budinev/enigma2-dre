@@ -2736,7 +2736,7 @@ msgstr ""
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "ฮาร์ดไดรฟ์ที่พบ:"
 
 msgid "Detected NIMs:"
@@ -9801,7 +9801,7 @@ msgid "Top and bottom"
 msgstr ""
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
+msgid "Total clients streaming: "
 msgstr ""
 
 msgid "Track"

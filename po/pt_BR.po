@@ -2676,7 +2676,7 @@ msgstr "Detalhes do plugin:"
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Disco rígido detectado:"
 
 msgid "Detected NIMs:"
@@ -9558,7 +9558,7 @@ msgid "Top and bottom"
 msgstr "Topo e rodapé"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
+msgid "Total clients streaming: "
 msgstr ""
 
 msgid "Track"

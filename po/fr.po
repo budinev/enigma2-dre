@@ -2644,7 +2644,7 @@ msgstr "Détails sur le plugin: "
 msgid "Detect next boxes before standby"
 msgstr "Détecter les autres équipements avant de se mettre en veille"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Disque(s) dur(s) détecté(s):"
 
 msgid "Detected NIMs:"
@@ -9415,8 +9415,8 @@ msgid "Top and bottom"
 msgstr "Haut et Bas"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Nombre total de clients de flux (stream) : %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Nombre total de clients de flux (stream): "
 
 msgid "Track"
 msgstr "Piste"

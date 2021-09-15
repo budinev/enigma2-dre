@@ -2656,7 +2656,7 @@ msgstr "Dettagli del plugin: "
 msgid "Detect next boxes before standby"
 msgstr "Ricerca dei ricevitori successivi prima della sospensione"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Disco rigido rilevato:"
 
 msgid "Detected NIMs:"
@@ -9483,8 +9483,8 @@ msgid "Top and bottom"
 msgstr "Alto e basso"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Numero totale di client in trasmissione: %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Numero totale di client in trasmissione: "
 
 msgid "Track"
 msgstr "Traccia"

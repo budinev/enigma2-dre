@@ -2638,7 +2638,7 @@ msgstr "Λεπτομέρειες για το πρόσθετο: "
 msgid "Detect next boxes before standby"
 msgstr "Εντοπισμός επόμενων δεκτών πριν την αναμονή"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Εντοπισμένοι HDD:"
 
 msgid "Detected NIMs:"
@@ -9400,8 +9400,8 @@ msgid "Top and bottom"
 msgstr "Πάνω και Κάτω"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Συνολικοί πελάτες σε ροή: %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Συνολικοί πελάτες σε ροή: "
 
 msgid "Track"
 msgstr "Κομμάτι"

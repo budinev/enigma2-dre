@@ -3065,7 +3065,7 @@ msgid "Detect next boxes before standby"
 msgstr ""
 
 #
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Zaznane shranjevalne naprave:"
 
 #
@@ -11020,7 +11020,7 @@ msgid "Top and bottom"
 msgstr "Zgoraj in spodaj"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
+msgid "Total clients streaming: "
 msgstr ""
 
 #

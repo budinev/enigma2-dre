@@ -2821,7 +2821,7 @@ msgstr "Plugin details:"
 msgid "Detect next boxes before standby"
 msgstr "Detecteer andere hardware voordat de box naar stand-by gaat"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Gedetecteerde harde schijf:"
 
 msgid "Detected NIMs:"
@@ -9690,8 +9690,8 @@ msgid "Top and bottom"
 msgstr "Boven en onderzijde"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Totaal aantal streamende clients: %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Totaal aantal streamende clients: "
 
 msgid "Track"
 msgstr "Spoor"

@@ -2664,7 +2664,7 @@ msgstr "Laienduse üksikasjad: "
 msgid "Detect next boxes before standby"
 msgstr "Leia järgnevad seadmed enne ooteseisundit"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Andmekandjad:"
 
 msgid "Detected NIMs:"
@@ -9538,8 +9538,8 @@ msgid "Top and bottom"
 msgstr "Üleval ja all"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Kliente kokku striimimas: %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Kliente kokku striimimas: "
 
 msgid "Track"
 msgstr "Rada"

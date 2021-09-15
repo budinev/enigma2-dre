@@ -2650,7 +2650,7 @@ msgstr "Details des Plugins: "
 msgid "Detect next boxes before standby"
 msgstr "Erkennen Sie die nächsten Kästchen vor dem Standby"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Erkannte Festplatte(n):"
 
 msgid "Detected NIMs:"
@@ -9433,8 +9433,8 @@ msgid "Top and bottom"
 msgstr "Oben und Unten"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Gesamtzahl der gestreamten Clients: %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Gesamtzahl der gestreamten Clients: "
 
 msgid "Track"
 msgstr "Spur"

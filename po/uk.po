@@ -2656,7 +2656,7 @@ msgstr "Деталі про плагін: "
 msgid "Detect next boxes before standby"
 msgstr "Виявити наступні приймачі перед вимкненням"
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "Виявлено HDD:"
 
 msgid "Detected NIMs:"
@@ -9428,8 +9428,8 @@ msgid "Top and bottom"
 msgstr "Зверху і Знизу"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr "Кількість клієнтів в стрімі: %d (%s)"
+msgid "Total clients streaming: "
+msgstr "Кількість клієнтів в стрімі: "
 
 msgid "Track"
 msgstr "Доріжка"

@@ -2689,7 +2689,7 @@ msgstr "Eklenti detayları:"
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected HDD:"
+msgid "Detected storage devices:"
 msgstr "HDD:"
 
 msgid "Detected NIMs:"
@@ -9617,7 +9617,7 @@ msgid "Top and bottom"
 msgstr "Üst ve alt"
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
+msgid "Total clients streaming: "
 msgstr ""
 
 msgid "Track"
