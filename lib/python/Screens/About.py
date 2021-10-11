@@ -18,6 +18,8 @@ from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop, eGetEnigmaD
 from Components.GUIComponent import GUIComponent
 from skin import applySkinFactor, parameters, parseScale
 
+from boxbranding import getImageBuild
+
 import os
 
 
@@ -30,7 +32,7 @@ class About(Screen):
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		cpu = about.getCPUInfoString()
 		AboutText += _("CPU: ") + cpu + "\n"
-		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
+		AboutText += _("Image: ") + about.getImageTypeString() + "-" + getImageBuild() + "\n"
 		AboutText += _("Build date: ") + about.getBuildDateString() + "\n"
 		AboutText += _("Last update: ") + about.getUpdateDateString() + "\n"
 
