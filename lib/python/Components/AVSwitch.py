@@ -3,7 +3,8 @@ from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
 from SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import os
-
+from boxbranding import getBoxType
+boxtype = getBoxType()
 
 class AVSwitch:
 	def setInput(self, input):
@@ -176,6 +177,19 @@ def InitAVSwitch():
 			f.close()
 		config.av.downmix_dts = ConfigYesNo(default=True)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
+
+	if SystemInfo["CanDTSHD"]:
+		def setDTSHD(configElement):
+			f = open("/proc/stb/audio/dtshd", "w")
+			f.write(configElement.value)
+			f.close()
+		if boxtype in ("dm7080", "dm820"):
+			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
+			config.av.dtshd = ConfigSelection(choices=choice_list, default="use_hdmi_caps")
+		else:
+			choice_list = [("downmix", _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps", _("controlled by HDMI")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
+			config.av.dtshd = ConfigSelection(choices=choice_list, default="downmix")
+		config.av.dtshd.addNotifier(setDTSHD)
 
 	if SystemInfo["CanDownmixAAC"]:
 		def setAACDownmix(configElement):

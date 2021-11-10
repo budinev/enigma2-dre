@@ -119,6 +119,8 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 			if SystemInfo["CanDownmixDTS"]:
 				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDTSHD"]:
+				self.list.append(getConfigListEntry(_("DTS/DTS-HD HR/DTS-HD MA/DTS:X"), config.av.dtshd, _("Choose whether DTS channel sound tracks should be downmixed or transcoded.")))
 			if SystemInfo["CanDownmixAAC"]:
 				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 			self.list.extend((
