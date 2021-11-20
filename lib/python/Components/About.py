@@ -144,6 +144,7 @@ def getCPUInfoString():
 					cpu_speed = "-"
 
 		temperature = None
+		freq = _("MHz")
 		if os.path.isfile('/proc/stb/fp/temp_sensor_avs'):
 			with open("/proc/stb/fp/temp_sensor_avs") as fp:
 				temperature = fp.readline().replace('\n', '')
@@ -167,8 +168,8 @@ def getCPUInfoString():
 			except:
 				pass
 		if temperature:
-			return "%s %s MHz (%s) %s\xb0C" % (processor, cpu_speed, ngettext("%d core", "%d cores", cpu_count) % cpu_count, temperature)
-		return "%s %s MHz (%s)" % (processor, cpu_speed, ngettext("%d core", "%d cores", cpu_count) % cpu_count)
+			return "%s %s %s (%s) %s\xb0C" % (processor, cpu_speed, freq, ngettext("%d core", "%d cores", cpu_count) % cpu_count, temperature)
+		return "%s %s %s (%s)" % (processor, cpu_speed, freq, ngettext("%d core", "%d cores", cpu_count) % cpu_count)
 	except:
 		return _("undefined")
 
