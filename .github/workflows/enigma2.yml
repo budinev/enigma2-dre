@@ -1,4 +1,4 @@
-name: Enigma2 CI
+name: Enigma2
 
 on:
   push:
@@ -9,19 +9,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        gcc: [8, 10]
     steps:
     - uses: actions/checkout@v2
-    - name: install gcc ${{ matrix.gcc }}
+    - name: install gcc-10 & g++-10
       run: |
+        sudo apt-get install software-properties-common
         sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
         sudo apt-get -q update
-        sudo apt install g++-${{ matrix.gcc }}
-    - name: install python packages
-      run: |
-        pip install netifaces pyopenssl python-wifi service_identity twisted
+        sudo apt-get install gcc-10 g++-10
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
     - name: install dev packages
       run: |
         sudo apt-get -q update
@@ -44,9 +40,6 @@ jobs:
         sudo apt-get install libjpeg-turbo8-dev
         sudo apt-get install libgif-dev
     - name: build enigma2 dependencies
-      env: 
-        CC: "gcc-${{ matrix.gcc }}"
-        CXX: "g++-${{ matrix.gcc }}"
       run: |
         echo installing libdvbsi++
         pushd .
@@ -73,39 +66,11 @@ jobs:
         make
         sudo make install
         popd
-    - name: patch enigma cpp files
-      run: |
-        sed -i 's/eFatal/eDebug/g' lib/gdi/gfbdc.cpp
     - name: build enigma2
-      env: 
-        CC: "gcc-${{ matrix.gcc }}"
-        CXX: "g++-${{ matrix.gcc }}"
       run: |
         echo compiling enigma2
         autoreconf -i
         ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-textlcd
         make
         python -m compileall .
-    - name: patch enigma py files
-      run: |
-        sed -i 's/reloadWindowStyles()  #/# reloadWindowStyles()  #/g' lib/python/skin.py
-        sed -i 's/setResolution(xres, yres/setResolution(xres, yres, 8/g' lib/python/skin.py
-        sed -i '1 i\globals()["__builtins__"]["ngettext"] = ngettext' lib/python/Tools/Profile.py
-        sed -i '1 i\from gettext import ngettext' lib/python/Tools/Profile.py
-        sed -i 's/reactor.run/pass  # reactor.run/g' lib/python/StartEnigma.py
-        sed -i 's/enigma.quitMainloop(5)/enigma.quitMainloop(1)/' lib/python/StartEnigma.py
-        sed -i 's/import enigma/import enigma\nenigma.quitMainloop(1)/' lib/python/StartEnigma.py
-        echo 'enigma.quitMainloop(0)' >> lib/python/StartEnigma.py
-    - name: install enigma
-      run: |
-        sudo make install
-        sudo mkdir -p '/usr/local/etc/enigma2'
-        sudo sh -c "echo 'config.misc.do_overscanwizard=false' > /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.firstrun=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.initialchannelselection=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.languageselected=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.videowizardenabled=false' >> /usr/local/etc/enigma2/settings"
-    - name: start enigma2
-      run: |
-        sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib ENIGMA_DEBUG_LVL=5 enigma2
         echo done!
