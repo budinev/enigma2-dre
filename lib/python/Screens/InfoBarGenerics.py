@@ -3644,18 +3644,18 @@ class InfoBarHDMI:
 
 class InfoBarHDMI2:
 	def __init__(self):
-		self.hdmi_enabled_pip = False
-		if SystemInfo["HasHDMIin"]:
-			if not self.hdmi_enabled_pip:
-				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
+		self.hdmi_enabled_input = False
+		if SystemInfo["DMHDMI"]:
+			if not self.hdmi_enabled_input:
+				self.addExtension((self.getHDMIInputScreen, self.HDMIInput, lambda: True), "green")
 
-	def getHDMIInPiPScreen(self):
-		if not self.hdmi_enabled_pip:
+	def getHDMIInputScreen(self):
+		if not self.hdmi_enabled_input:
 			return _("Turn on HDMI-IN mode")
 		else:
 			return _("Turn off HDMI-IN mode")
 
-	def HDMIInPiP(self):
+	def HDMIInput(self):
 			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
@@ -3666,7 +3666,7 @@ class InfoBarHDMI2:
 				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
-				self.hdmi_enabled_pip = True
+				self.hdmi_enabled_input = True
 			else:
 				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("off")
@@ -3674,4 +3674,4 @@ class InfoBarHDMI2:
 				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
-				self.hdmi_enabled_pip = False
+				self.hdmi_enabled_input = False
