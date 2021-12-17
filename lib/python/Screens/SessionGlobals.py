@@ -11,7 +11,6 @@ from Components.Sources.HddState import HddState
 from Components.Converter.Combine import Combine
 from Components.Renderer.FrontpanelLed import FrontpanelLed
 from Components.config import config
-from enigma import getBoxType
 
 
 class SessionGlobals(Screen):
@@ -91,14 +90,12 @@ class SessionGlobals(Screen):
 			RecstdbyLed1 = PATTERN_BLINK
 
 		nr_leds = SystemInfo.get("NumFrontpanelLEDs", 0)
+		have_touch_sensor = SystemInfo.get("HaveTouchSensor", False)
 
  		if nr_leds == 1:
  			FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)
  		elif nr_leds == 2:
-			if getBoxType() in "dm520":
-				FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_ON, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)
-				FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_OFF, PATTERN_OFF, PATTERN_ON, PATTERN_OFF]).connect(combine)
-			elif getBoxType() in ("dm900","dm920"):
+			if have_touch_sensor:
 				FrontpanelLed(which = 0, boolean = False, patterns = [NormalLed0, RecLed0, StandbyLed0, RecstdbyLed0]).connect(combine)
 				FrontpanelLed(which = 1, boolean = False, patterns = [NormalLed1, RecLed1, StandbyLed1, RecstdbyLed1]).connect(combine)
 			else:
