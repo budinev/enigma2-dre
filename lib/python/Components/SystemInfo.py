@@ -39,7 +39,6 @@ def getBootdevice():
 
 model = HardwareInfo().get_device_model()
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
-SystemInfo["HaveTouchSensor"] = model in ("dm520", "dm525", "dm900", "dm920")
 SystemInfo["InDebugMode"] = eGetEnigmaDebugLvl() >= 4
 SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
