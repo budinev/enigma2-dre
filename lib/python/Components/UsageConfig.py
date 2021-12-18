@@ -294,6 +294,171 @@ def InitUsageConfig():
 	config.usage.frontledstdby_color = ConfigSelection(default = "0", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
 	config.usage.frontledrecstdby_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
 
+	config.usage.tt_res = ConfigSelection(default = "TTF_FHD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("EXP_MODE", _("Expert mode"))])
+	config.usage.tuxtxt_UseTTF = ConfigSelection(default="1", choices=[("0", "0"), ("1", "1")])
+	config.usage.tuxtxt_TTFBold = ConfigSelection(default="0", choices=[("0", "0"), ("1", "1")])
+	config.usage.tuxtxt_TTFScreenResX = ConfigSelection(default="1920", choices=[("720", "720"), ("1280", "1280"), ("1920", "1920")])
+	config.usage.tuxtxt_StartX = ConfigInteger(default=140, limits=(0, 200))
+	config.usage.tuxtxt_EndX = ConfigInteger(default=1780, limits=(500, 1920))
+	config.usage.tuxtxt_StartY = ConfigInteger(default=52, limits=(0, 200))
+	config.usage.tuxtxt_EndY = ConfigInteger(default=1027, limits=(400, 1080))
+	config.usage.tuxtxt_TTFShiftY = ConfigSelection(default="-6", choices=[("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
+	config.usage.tuxtxt_TTFShiftX = ConfigSelection(default="0", choices=[("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
+	config.usage.tuxtxt_TTFWidthFactor16 = ConfigInteger(default=26, limits=(8, 31))
+	config.usage.tuxtxt_TTFHeightFactor16 = ConfigInteger(default=14, limits=(8, 31))
+	config.usage.tuxtxt_CleanAlgo = ConfigInteger(default=0, limits=(0, 9))
+	def TtResChanged(configElement):
+		try:
+			command = "cp -f /etc/tuxtxt/" + configElement.value + " /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to copy tuxtxt2.conf!")
+	config.usage.tt_res.addNotifier(TtResChanged, immediate_feedback=False)
+
+	def UseTTFChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("UseTTF", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_UseTTF.addNotifier(UseTTFChanged, immediate_feedback=False)
+
+	def TTFBoldChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFBold", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_TTFBold.addNotifier(TTFBoldChanged, immediate_feedback=False)
+
+	def TTFScreenResXChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFScreenResX", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_TTFScreenResX.addNotifier(TTFScreenResXChanged, immediate_feedback=False)
+
+	def StartXChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("StartX", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_StartX.addNotifier(StartXChanged, immediate_feedback=False)
+
+	def EndXChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("EndX", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_EndX.addNotifier(EndXChanged, immediate_feedback=False)
+
+	def StartYChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("StartY", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_StartY.addNotifier(StartYChanged, immediate_feedback=False)
+
+	def EndYChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("EndY", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_EndY.addNotifier(EndYChanged, immediate_feedback=False)
+
+	def TTFShiftYChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFShiftY", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_TTFShiftY.addNotifier(TTFShiftYChanged, immediate_feedback=False)
+
+	def TTFShiftXChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFShiftX", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_TTFShiftX.addNotifier(TTFShiftXChanged, immediate_feedback=False)
+
+	def TTFWidthFactor16Changed(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFWidthFactor16", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(TTFWidthFactor16Changed, immediate_feedback=False)
+
+	def TTFHeightFactor16Changed(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFHeightFactor16", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(TTFHeightFactor16Changed, immediate_feedback=False)
+
+	def CleanAlgoChanged(configElement):
+		try:
+			command = "sed -i -r '"
+			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("CleanAlgo", int(configElement.value))
+			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
+			Console().ePopen(command)
+			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
+			Console().ePopen(command)
+		except:
+			print("Error: failed to modify tuxtxt2.conf!")
+	config.usage.tuxtxt_CleanAlgo.addNotifier(CleanAlgoChanged, immediate_feedback=False)
+
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
