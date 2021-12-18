@@ -2,7 +2,8 @@
 	<setup key="timezone" title="Timezone">
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
-		<item level="1" text="Use transponder time">config.misc.useTransponderTime</item>
+		<item level="1" text="Time synchronization method" description="Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available.">config.ntp.timesync</item>
+		<item level="1" text="NTP Hostname" conditional="config.ntp.timesync.value != 'dvb'" description="The hostname or the IP address of the NTP server to synchronise the time with.">config.ntp.server</item>
 	</setup>
 	<setup key="avsetup">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
@@ -232,6 +233,10 @@
 		<item text="Contrast">config.osd.contrast</item>
 	</setup>
 	<setup key="lcd" title="Display setup" requires="FrontpanelDisplay">
+		<item level="0" requires="HaveTouchSensor" text="LED color during normal operations" description="Configure front LED color during normal operations (this needs an enigma2 restart).">config.usage.frontled_color</item>
+		<item level="0" requires="HaveTouchSensor" text="LED color during recording" description="Configure front LED color during recording (this needs an enigma2 restart).">config.usage.frontledrec_color</item>
+		<item level="0" requires="HaveTouchSensor" text="LED color during standby" description="Configure front LED color during standby (this needs an enigma2 restart).">config.usage.frontledstdby_color</item>
+		<item level="0" requires="HaveTouchSensor" text="LED color during recording in standby" description="Configure front LED color during recording in standby (this needs an enigma2 restart).">config.usage.frontledrecstdby_color</item>
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="LcdLiveTV">config.lcd.showTv</item>
 		<item level="0" text="Clone TV screen to LCD mode" description="Selects the mode how live tv should be shown on the LCD." requires="LcdLiveTVMode">config.usage.LcdLiveTVMode</item>
 		<item level="2" text="Live decoder" description="Selects video source displayed on the LCD." requires="LcdLiveDecoder">config.usage.LcdLiveDecoder</item>
@@ -254,12 +259,6 @@
 		<item level="0" text="Power on display" description="This option allows you to power off the display." requires="PowerOffDisplay">config.usage.powerOffDisplay</item>
 		<item level="2" text="Show symbols on display" description="This option allows you to show all symbols on the display." requires="LCDshow_symbols">config.usage.lcd_show_symbols</item>
 		<item level="2" text="Use 12 characters display mode" description="If enabled, display shows 12 chars instead 8, but in latin-1/translit only." requires="hasXcoreVFD">config.usage.toggle12to8characterVFD</item>
-	</setup>
-	<setup key="ledsetup" title="LED Setup">
-		<item level="0" text="LED color during normal operations" description="Configure front LED color during normal operations (this needs an enigma2 restart).">config.usage.frontled_color</item>
-		<item level="0" text="LED color during recording" description="Configure front LED color during recording (this needs an enigma2 restart).">config.usage.frontledrec_color</item>
-		<item level="0" text="LED color during standby" description="Configure front LED color during standby (this needs an enigma2 restart).">config.usage.frontledstdby_color</item>
-		<item level="0" text="LED color during recording in standby" description="Configure front LED color during recording in standby (this needs an enigma2 restart).">config.usage.frontledrecstdby_color</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
