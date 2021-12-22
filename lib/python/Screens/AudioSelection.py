@@ -351,9 +351,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def keyRight(self, config=False):
 		if config or self.focus == FOCUS_CONFIG:
-			if self["config"].getCurrentIndex() < 3:
-				ConfigListScreen.keyRight(self)
-			elif self["config"].getCurrentIndex() == 3:
+			if self["config"].getCurrentIndex() == 3:
 				if self.settings.menupage.getValue() == PAGE_AUDIO and hasattr(self, "plugincallfunc"):
 					if len(self.Plugins) > 1:
 						def runPluginAction(choice):
@@ -364,6 +362,8 @@ class AudioSelection(Screen, ConfigListScreen):
 						self.plugincallfunc()
 				elif self.settings.menupage.getValue() == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0):
 					self.session.open(QuickSubtitlesConfigMenu, self.infobar)
+			else:
+				ConfigListScreen.keyRight(self)
 		if self.focus == FOCUS_STREAMS and self["streams"].count() and config == False:
 			self["streams"].setIndex(self["streams"].count() - 1)
 
