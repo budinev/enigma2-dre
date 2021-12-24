@@ -79,26 +79,4 @@ jobs:
         ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-textlcd
         make
         python -m compileall .
-    - name: patch enigma py files
-      run: |
-        sed -i 's/reloadWindowStyles()  #/# reloadWindowStyles()  #/g' lib/python/skin.py
-        sed -i 's/setResolution(xres, yres/setResolution(xres, yres, 8/g' lib/python/skin.py
-        sed -i '1 i\globals()["__builtins__"]["ngettext"] = ngettext' lib/python/Tools/Profile.py
-        sed -i '1 i\from gettext import ngettext' lib/python/Tools/Profile.py
-        sed -i 's/reactor.run/pass  # reactor.run/g' lib/python/StartEnigma.py
-        sed -i 's/enigma.quitMainloop(5)/enigma.quitMainloop(1)/' lib/python/StartEnigma.py
-        sed -i 's/import enigma/import enigma\nenigma.quitMainloop(1)/' lib/python/StartEnigma.py
-        echo 'enigma.quitMainloop(0)' >> lib/python/StartEnigma.py
-    - name: install enigma
-      run: |
-        sudo make install
-        sudo mkdir -p '/usr/local/etc/enigma2'
-        sudo sh -c "echo 'config.misc.do_overscanwizard=false' > /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.firstrun=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.initialchannelselection=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.languageselected=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.videowizardenabled=false' >> /usr/local/etc/enigma2/settings"
-    - name: start enigma2
-      run: |
-        sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib ENIGMA_DEBUG_LVL=5 enigma2
         echo done!
