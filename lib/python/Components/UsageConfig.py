@@ -293,6 +293,7 @@ def InitUsageConfig():
 	config.usage.frontledrec_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
 	config.usage.frontledstdby_color = ConfigSelection(default = "0", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
 	config.usage.frontledrecstdby_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
+	config.usage.frontled_speed = ConfigInteger(default=20, limits=(1, 99))
 
 	config.usage.tt_res = ConfigSelection(default = "TTF_FHD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("EXP_MODE", _("Expert mode"))])
 	config.usage.tuxtxt_UseTTF = ConfigSelection(default="1", choices=[("0", "0"), ("1", "1")])

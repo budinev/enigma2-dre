@@ -1,5 +1,6 @@
 from Components.Element import Element
 from Tools.Directories import fileExists
+from Components.config import config
 
 # this is not a GUI renderer.
 
@@ -18,6 +19,7 @@ class FrontpanelLed(Element):
 			val = self.source.value
 
 		(speed, pattern, pattern_4bit) = self.patterns[val]
+		speed = int(config.usage.frontled_speed.value)
 		if fileExists("/proc/stb/fp/led%d_pattern" % self.which):
 			try:
 				f = open("/proc/stb/fp/led%d_pattern" % self.which, "w")

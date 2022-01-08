@@ -237,6 +237,7 @@
 		<item level="0" requires="HaveTouchSensor" text="LED color during recording" description="Configure front LED color during recording (this needs an enigma2 restart).">config.usage.frontledrec_color</item>
 		<item level="0" requires="HaveTouchSensor" text="LED color during standby" description="Configure front LED color during standby (this needs an enigma2 restart).">config.usage.frontledstdby_color</item>
 		<item level="0" requires="HaveTouchSensor" text="LED color during recording in standby" description="Configure front LED color during recording in standby (this needs an enigma2 restart).">config.usage.frontledrecstdby_color</item>
+		<item level="0" requires="HaveTouchSensor" text="LED color blink speed" description="Smaller numbers are faster (this needs an enigma2 restart).">config.usage.frontled_speed</item>
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="LcdLiveTV">config.lcd.showTv</item>
 		<item level="0" text="Clone TV screen to LCD mode" description="Selects the mode how live tv should be shown on the LCD." requires="LcdLiveTVMode">config.usage.LcdLiveTVMode</item>
 		<item level="2" text="Live decoder" description="Selects video source displayed on the LCD." requires="LcdLiveDecoder">config.usage.LcdLiveDecoder</item>
