@@ -17,14 +17,16 @@ visuallyImpairedCommentary = "NAR qad"
 
 def leaveStandby():
 	if not config.usage.powerLED.value:
-		open(SystemInfo["PowerLED"], "w").write("0")
+		with open(SystemInfo["PowerLED"], "w") as fp:
+			fp.write("0")
 
 
 def standbyCounterChanged(dummy):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	if not config.usage.standbyLED.value:
-		open(SystemInfo["StandbyLED"], "w").write("0")
+		with open(SystemInfo["StandbyLED"], "w") as fp:
+			fp.write("0")
 
 
 def InitUsageConfig():
