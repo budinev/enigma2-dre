@@ -5,6 +5,7 @@ from Tools.Directories import defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBLocalTimeHandler, eEPGCache
 from Components.About import GetIPsFromNetworkInterfaces
 from Components.NimManager import nimmanager
+from Components.Renderer.FrontpanelLed import ledPatterns, PATTERN_ON, PATTERN_OFF, PATTERN_BLINK
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 import os
@@ -13,20 +14,6 @@ import time
 
 originalAudioTracks = "orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
-
-
-def leaveStandby():
-	if not config.usage.powerLED.value:
-		with open(SystemInfo["PowerLED"], "w") as fp:
-			fp.write("0")
-
-
-def standbyCounterChanged(dummy):
-	from Screens.Standby import inStandby
-	inStandby.onClose.append(leaveStandby)
-	if not config.usage.standbyLED.value:
-		with open(SystemInfo["StandbyLED"], "w") as fp:
-			fp.write("0")
 
 
 def InitUsageConfig():
@@ -156,7 +143,7 @@ def InitUsageConfig():
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default="popup", choices=[
 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("movielist", _("Return to movie list"))])
 
-	config.usage.setup_level = ConfigSelection(default="expert", choices=[
+	config.usage.setup_level = ConfigSelection(default="simple", choices=[
 		("simple", _("Normal")),
 		("intermediate", _("Advanced")),
 		("expert", _("Expert"))])
@@ -278,7 +265,7 @@ def InitUsageConfig():
 
 	preferredTunerChoicesUpdate()
 
-	config.misc.disable_background_scan = ConfigYesNo(default=True)
+	config.misc.disable_background_scan = ConfigYesNo(default=False)
 	config.misc.use_ci_assignment = ConfigYesNo(default=False)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default='barright', choices=[
 		('barleft', _("Progress bar left")),
@@ -304,177 +291,6 @@ def InitUsageConfig():
 	config.usage.movielist_unseen = ConfigYesNo(default=False)
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default=False)
-
-	config.usage.frontled_color = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontledrec_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontledstdby_color = ConfigSelection(default = "0", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontledrecstdby_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontled_speed = ConfigInteger(default=20, limits=(1, 99))
-
-	config.usage.tt_res = ConfigSelection(default = "TTF_FHD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("EXP_MODE", _("Expert mode"))])
-	config.usage.tuxtxt_UseTTF = ConfigSelection(default="1", choices=[("0", "0"), ("1", "1")])
-	config.usage.tuxtxt_TTFBold = ConfigSelection(default="0", choices=[("0", "0"), ("1", "1")])
-	config.usage.tuxtxt_TTFScreenResX = ConfigSelection(default="1920", choices=[("720", "720"), ("1280", "1280"), ("1920", "1920")])
-	config.usage.tuxtxt_StartX = ConfigInteger(default=140, limits=(0, 200))
-	config.usage.tuxtxt_EndX = ConfigInteger(default=1780, limits=(500, 1920))
-	config.usage.tuxtxt_StartY = ConfigInteger(default=52, limits=(0, 200))
-	config.usage.tuxtxt_EndY = ConfigInteger(default=1027, limits=(400, 1080))
-	config.usage.tuxtxt_TTFShiftY = ConfigSelection(default="-6", choices=[("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
-	config.usage.tuxtxt_TTFShiftX = ConfigSelection(default="0", choices=[("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
-	config.usage.tuxtxt_TTFWidthFactor16 = ConfigInteger(default=26, limits=(8, 31))
-	config.usage.tuxtxt_TTFHeightFactor16 = ConfigInteger(default=14, limits=(8, 31))
-	config.usage.tuxtxt_CleanAlgo = ConfigInteger(default=0, limits=(0, 9))
-	def TtResChanged(configElement):
-		try:
-			command = "cp -f /etc/tuxtxt/" + configElement.value + " /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to copy tuxtxt2.conf!")
-	config.usage.tt_res.addNotifier(TtResChanged, immediate_feedback=False)
-
-	def UseTTFChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("UseTTF", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_UseTTF.addNotifier(UseTTFChanged, immediate_feedback=False)
-
-	def TTFBoldChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFBold", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_TTFBold.addNotifier(TTFBoldChanged, immediate_feedback=False)
-
-	def TTFScreenResXChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFScreenResX", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_TTFScreenResX.addNotifier(TTFScreenResXChanged, immediate_feedback=False)
-
-	def StartXChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("StartX", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_StartX.addNotifier(StartXChanged, immediate_feedback=False)
-
-	def EndXChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("EndX", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_EndX.addNotifier(EndXChanged, immediate_feedback=False)
-
-	def StartYChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("StartY", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_StartY.addNotifier(StartYChanged, immediate_feedback=False)
-
-	def EndYChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("EndY", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_EndY.addNotifier(EndYChanged, immediate_feedback=False)
-
-	def TTFShiftYChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFShiftY", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_TTFShiftY.addNotifier(TTFShiftYChanged, immediate_feedback=False)
-
-	def TTFShiftXChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFShiftX", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_TTFShiftX.addNotifier(TTFShiftXChanged, immediate_feedback=False)
-
-	def TTFWidthFactor16Changed(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFWidthFactor16", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(TTFWidthFactor16Changed, immediate_feedback=False)
-
-	def TTFHeightFactor16Changed(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("TTFHeightFactor16", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(TTFHeightFactor16Changed, immediate_feedback=False)
-
-	def CleanAlgoChanged(configElement):
-		try:
-			command = "sed -i -r '"
-			command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % ("CleanAlgo", int(configElement.value))
-			command += "' %s" % "/etc/tuxtxt/EXP_MODE"
-			Console().ePopen(command)
-			command = "cp -f /etc/tuxtxt/EXP_MODE /etc/tuxtxt/tuxtxt2.conf"
-			Console().ePopen(command)
-		except:
-			print("Error: failed to modify tuxtxt2.conf!")
-	config.usage.tuxtxt_CleanAlgo.addNotifier(CleanAlgoChanged, immediate_feedback=False)
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
@@ -503,96 +319,85 @@ def InitUsageConfig():
 	if SystemInfo["Fan"]:
 		choicelist = [('off', _("Off")), ('on', _("On")), ('auto', _("Auto"))]
 		if os.path.exists("/proc/stb/fp/fan_choices"):
-			with open("/proc/stb/fp/fan_choices", "r") as fp:
-				choicelist = [x for x in choicelist if x[0] in fp.read().strip().split(" ")]
+			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
 		config.usage.fan = ConfigSelection(choicelist)
 
 		def fanChanged(configElement):
-			with open(SystemInfo["Fan"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["Fan"], "w").write(configElement.value)
 		config.usage.fan.addNotifier(fanChanged)
 
 	if SystemInfo["FanPWM"]:
 		def fanSpeedChanged(configElement):
-			with open(SystemInfo["FanPWM"], "w") as fp:
-				fp.write(hex(configElement.value)[2:])
+			open(SystemInfo["FanPWM"], "w").write(hex(configElement.value)[2:])
 		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
 		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	if SystemInfo["PowerLED"]:
 		def powerLEDChanged(configElement):
-			with open(SystemInfo["PowerLED"], "w") as fs:
-				if "fp" in SystemInfo["PowerLED"]:
-					fs.write(configElement.value and "1" or "0")
-				else:
-					fs.write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["PowerLED"]:
+				open(SystemInfo["PowerLED"], "w").write(configElement.value and "1" or "0")
+				patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF] if configElement.value else [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]
+				ledPatterns.setLedPatterns(1, patterns)
+			else:
+				open(SystemInfo["PowerLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.powerLED = ConfigYesNo(default=True)
 		config.usage.powerLED.addNotifier(powerLEDChanged)
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			with open(SystemInfo["StandbyLED"], "w") as fp:
-				fp.write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["StandbyLED"]:
+				patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK] if configElement.value else [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]
+				ledPatterns.setLedPatterns(0, patterns)
+			else:
+				open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default=True)
-		if not "fp" in SystemInfo["StandbyLED"]:
-			config.usage.standbyLED.addNotifier(standbyLEDChanged)
-
-	if SystemInfo["PowerLED"] and "fp" in SystemInfo["PowerLED"] and not config.usage.powerLED.value or (SystemInfo["StandbyLED"] and "fp" in SystemInfo["StandbyLED"] and not config.usage.standbyLED.value):
-		config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
+		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["SuspendLED"]:
 		def suspendLEDChanged(configElement):
-			with open(SystemInfo["SuspendLED"], "w") as fs:
-				if "fp" in SystemInfo["SuspendLED"]:
-					fs.write(configElement.value and "1" or "0")
-				else:
-					fs.write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["SuspendLED"]:
+				open(SystemInfo["SuspendLED"], "w").write(configElement.value and "1" or "0")
+			else:
+				open(SystemInfo["SuspendLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.suspendLED = ConfigYesNo(default=True)
 		config.usage.suspendLED.addNotifier(suspendLEDChanged)
 
 	if SystemInfo["PowerOffDisplay"]:
 		def powerOffDisplayChanged(configElement):
-			with open(SystemInfo["PowerOffDisplay"], "w") as fp:
-				fp.write(configElement.value and "1" or "0")
+			open(SystemInfo["PowerOffDisplay"], "w").write(configElement.value and "1" or "0")
 		config.usage.powerOffDisplay = ConfigYesNo(default=True)
 		config.usage.powerOffDisplay.addNotifier(powerOffDisplayChanged)
 
 	if SystemInfo["LCDshow_symbols"]:
 		def lcdShowSymbols(configElement):
-			with open(SystemInfo["LCDshow_symbols"], "w") as fp:
-				fp.write(configElement.value and "1" or "0")
+			open(SystemInfo["LCDshow_symbols"], "w").write(configElement.value and "1" or "0")
 		config.usage.lcd_show_symbols = ConfigYesNo(default=True)
 		config.usage.lcd_show_symbols.addNotifier(lcdShowSymbols)
 
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
 			if "fp" in SystemInfo["WakeOnLAN"]:
-				with open(SystemInfo["WakeOnLAN"], "w") as f:
-					f.write(configElement.value and "enable" or "disable")
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
 			else:
-				with open(SystemInfo["WakeOnLAN"], "w") as f:
-					f.write(configElement.value and "on" or "off")
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 		config.usage.wakeOnLAN = ConfigYesNo(default=False)
 		config.usage.wakeOnLAN.addNotifier(wakeOnLANChanged)
 
 	if SystemInfo["hasXcoreVFD"]:
 		def set12to8characterVFD(configElement):
-			with open(SystemInfo["hasXcoreVFD"], "w") as fp:
-				fp.write(not configElement.value and "1" or "0")
+			open(SystemInfo["hasXcoreVFD"], "w").write(not configElement.value and "1" or "0")
 		config.usage.toggle12to8characterVFD = ConfigYesNo(default=False)
 		config.usage.toggle12to8characterVFD.addNotifier(set12to8characterVFD)
 
 	if SystemInfo["LcdLiveTVMode"]:
 		def setLcdLiveTVMode(configElement):
-			with open(SystemInfo["LcdLiveTVMode"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["LcdLiveTVMode"], "w").write(configElement.value)
 		config.usage.LcdLiveTVMode = ConfigSelection(default="0", choices=[str(x) for x in range(0, 9)])
 		config.usage.LcdLiveTVMode.addNotifier(setLcdLiveTVMode)
 
 	if SystemInfo["LcdLiveDecoder"]:
 		def setLcdLiveDecoder(configElement):
-			with open(SystemInfo["LcdLiveDecoder"], "w") as fp:
-				fp.write(configElement.value)
+			open(SystemInfo["LcdLiveDecoder"], "w").write(configElement.value)
 		config.usage.LcdLiveDecoder = ConfigSelection(default="0", choices=[str(x) for x in range(0, 4)])
 		config.usage.LcdLiveDecoder.addNotifier(setLcdLiveDecoder)
 
@@ -715,22 +520,14 @@ def InitUsageConfig():
 
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
-			with open(SystemInfo["ZapMode"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["ZapMode"], "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback=False)
 
-	if SystemInfo["ISDREAMBOX"]:
-		def setZapmodeDM(el):
-			print('[UsageConfig] >>> zapmodeDM')
-		config.misc.zapmodeDM = ConfigSelection(default="black", choices=[("black", _("Black screen")), ("hold", _("Hold screen"))])
-		config.misc.zapmodeDM.addNotifier(setZapmodeDM, immediate_feedback = False)
-
 	if SystemInfo["VFD_scroll_repeats"]:
 		def scroll_repeats(el):
-			with open(SystemInfo["VFD_scroll_repeats"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
 		choicelist = []
 		for i in range(1, 11, 1):
 			choicelist.append((str(i)))
@@ -739,8 +536,7 @@ def InitUsageConfig():
 
 	if SystemInfo["VFD_scroll_delay"]:
 		def scroll_delay(el):
-			with open(SystemInfo["VFD_scroll_delay"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_scroll_delay"], "w").write(el.value)
 		choicelist = []
 		for i in range(0, 1001, 50):
 			choicelist.append((str(i)))
@@ -749,8 +545,7 @@ def InitUsageConfig():
 
 	if SystemInfo["VFD_initial_scroll_delay"]:
 		def initial_scroll_delay(el):
-			with open(SystemInfo["VFD_initial_scroll_delay"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
 		choicelist = []
 		for i in range(0, 20001, 500):
 			choicelist.append((str(i)))
@@ -759,85 +554,12 @@ def InitUsageConfig():
 
 	if SystemInfo["VFD_final_scroll_delay"]:
 		def final_scroll_delay(el):
-			with open(SystemInfo["VFD_final_scroll_delay"], "w") as fp:
-				fp.write(el.value)
+			open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
 		choicelist = []
 		for i in range(0, 20001, 500):
 			choicelist.append((str(i)))
 		config.usage.vfd_final_scroll_delay = ConfigSelection(default="1000", choices=choicelist)
 		config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback=False)
-
-	if SystemInfo["HasBypassEdidChecking"]:
-		def setHasBypassEdidChecking(configElement):
-			with open(SystemInfo["HasBypassEdidChecking"], "w") as fp:
-				fp.write("00000001" if configElement.value else "00000000")
-		config.av.bypassEdidChecking = ConfigYesNo(default=False)
-		config.av.bypassEdidChecking.addNotifier(setHasBypassEdidChecking)
-
-	if SystemInfo["HasColorspace"]:
-		def setHaveColorspace(configElement):
-			with open(SystemInfo["HasColorspace"], "w") as fp:
-				fp.write(configElement.value)
-		if SystemInfo["HasColorspaceSimple"]:
-			config.av.hdmicolorspace = ConfigSelection(default="Edid(Auto)", choices={"Edid(Auto)": _("auto"), "Hdmi_Rgb": "RGB", "444": "YCbCr 4:4:4", "422": "YCbCr 4:2:2", "420": "YCbCr 4:2:0"})
-		else:
-			config.av.hdmicolorspace = ConfigSelection(default="auto", choices={"auto": _("auto"), "rgb": "RGB", "420": "4:2:0", "422": "4:2:2", "444": "4:4:4"})
-		config.av.hdmicolorspace.addNotifier(setHaveColorspace)
-
-	if SystemInfo["HasColordepth"]:
-		def setHaveColordepth(configElement):
-			with open(SystemInfo["HasColordepth"], "w") as fp:
-				fp.write(configElement.value)
-		config.av.hdmicolordepth = ConfigSelection(default="auto", choices={"auto": _("auto"), "8bit": "8bit", "10bit": "10bit", "12bit": "12bit"})
-		config.av.hdmicolordepth.addNotifier(setHaveColordepth)
-
-	if SystemInfo["HasHDMIpreemphasis"]:
-		def setHDMIpreemphasis(configElement):
-			with open(SystemInfo["HasHDMIpreemphasis"], "w") as fp:
-				fp.write("on" if configElement.value else "off")
-		config.av.hdmipreemphasis = ConfigYesNo(default=False)
-		config.av.hdmipreemphasis.addNotifier(setHDMIpreemphasis)
-
-	if SystemInfo["HasColorimetry"]:
-		def setColorimetry(configElement):
-			with open(SystemInfo["HasColorimetry"], "w") as fp:
-				fp.write(configElement.value)
-		config.av.hdmicolorimetry = ConfigSelection(default="auto", choices=[("auto", _("auto")), ("bt2020ncl", "BT 2020 NCL"), ("bt2020cl", "BT 2020 CL"), ("bt709", "BT 709")])
-		config.av.hdmicolorimetry.addNotifier(setColorimetry)
-
-	if SystemInfo["HasHdrType"]:
-		def setHdmiHdrType(configElement):
-			with open(SystemInfo["HasHdrType"], "w") as fp:
-				fp.write(configElement.value)
-		config.av.hdmihdrtype = ConfigSelection(default="auto", choices={"auto": _("auto"), "none": "SDR", "hdr10": "HDR10", "hlg": "HLG", "dolby": "Dolby Vision"})
-		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
-
-	if SystemInfo["HDRSupport"]:
-		def setHlgSupport(configElement):
-			with open("/proc/stb/hdmi/hlg_support", "w") as fp:
-				fp.write(configElement.value)
-		config.av.hlg_support = ConfigSelection(default="auto(EDID)",
-			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
-		config.av.hlg_support.addNotifier(setHlgSupport)
-
-		def setHdr10Support(configElement):
-			with open("/proc/stb/hdmi/hdr10_support", "w") as fp:
-				fp.write(configElement.value)
-		config.av.hdr10_support = ConfigSelection(default="auto(EDID)",
-			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
-		config.av.hdr10_support.addNotifier(setHdr10Support)
-
-		def setDisable12Bit(configElement):
-			with open("/proc/stb/video/disable_12bit", "w") as fp:
-				fp.write("on" if configElement.value else "off")
-		config.av.allow_12bit = ConfigYesNo(default=False)
-		config.av.allow_12bit.addNotifier(setDisable12Bit)
-
-		def setDisable10Bit(configElement):
-			with open("/proc/stb/video/disable_10bit", "w") as fp:
-				fp.write("on" if configElement.value else "off")
-		config.av.allow_10bit = ConfigYesNo(default=False)
-		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
 	config.subtitles = ConfigSubsection()
 	config.subtitles.show = ConfigYesNo(default=True)
