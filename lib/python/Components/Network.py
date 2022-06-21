@@ -67,7 +67,9 @@ class Network:
 		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False}
 		try:
 			if os.path.exists('/sys/class/net/%s/operstate' % iface):
-				data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
+				fp = open('/sys/class/net/%s/flags' % iface, 'r')
+				data['up'] = int(fp.read().strip(), 16) & 1 == 1
+				fp.close()
 			if data['up'] and iface not in self.configuredInterfaces:
 				self.configuredInterfaces.append(iface)
 			nit = ni.ifaddresses(iface)
@@ -545,6 +547,7 @@ class Network:
 				ifnames.append(device.search(line).group()[:-1])
 			except AttributeError:
 				pass
+		fp.close()
 		if iface in ifnames:
 			return True
 
