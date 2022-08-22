@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        gcc: [8, 10]
     steps:
     - uses: actions/checkout@v2
     - name: install gcc-10 & g++-10
